@@ -9,13 +9,13 @@ public class Avion {
     private TipoAvion modelo;
     private int capacidad;
     private int anioFabricacion;
-    private double Kilometros;
+    private double kilometrosRecorridos;
 
     //CONSTRUCTOR
 
-    public Avion(TipoAvion modelo, double kilometros, int anioFabricacion, int capacidad) {
+    public Avion(TipoAvion modelo, double kilometrosRecorridos, int anioFabricacion, int capacidad) {
         this.modelo = modelo;
-        Kilometros = kilometros;
+        kilometrosRecorridos = kilometrosRecorridos;
         this.anioFabricacion = anioFabricacion;
         this.capacidad = capacidad;
     }
@@ -30,8 +30,8 @@ public class Avion {
         return modelo;
     }
 
-    public double getKilometros() {
-        return Kilometros;
+    public double getKilometrosRecorridos() {
+        return kilometrosRecorridos;
     }
 
     public int getAnioFabricacion() {
@@ -48,8 +48,8 @@ public class Avion {
         this.modelo = modelo;
     }
 
-    public void setKilometros(double kilometros) {
-        Kilometros = kilometros;
+    public void setKilometrosRecorridos(double kilometros) {
+        kilometrosRecorridos = kilometrosRecorridos;
     }
 
     public void setAnioFabricacion(int anioFabricacion) {
@@ -68,7 +68,7 @@ public class Avion {
                 "modelo=" + modelo +
                 ", capacidad=" + capacidad +
                 ", anioFabricacion=" + anioFabricacion +
-                ", Kilometros=" + Kilometros +
+                ", Kilometros=" + kilometrosRecorridos +
                 '}';
     }
 

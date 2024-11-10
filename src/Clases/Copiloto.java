@@ -11,19 +11,8 @@ public class Copiloto extends Tripulante{
 
     //CONSTRUCTOR
 
-    public Copiloto(String telefono, String fechaNacimiento, String nacionalidad, String apellido, String DNI, String direccion, String nombre, TipoTripulante tipoTripulante, String cargo, String legajo, float sueldo, int horasVuelosCP, String licenciaVuelosCP) {
-        super(telefono, fechaNacimiento, nacionalidad, apellido, DNI, direccion, nombre, tipoTripulante, cargo, legajo, sueldo);
-        this.horasVuelosCP = horasVuelosCP;
-        this.licenciaVuelosCP = licenciaVuelosCP;
-    }
-
-    public Copiloto(int horasVuelosCP, String licenciaVuelosCP) {
-        this.horasVuelosCP = horasVuelosCP;
-        this.licenciaVuelosCP = licenciaVuelosCP;
-    }
-
-    public Copiloto(TipoTripulante tipoTripulante, String cargo, String legajo, float sueldo, int horasVuelosCP, String licenciaVuelosCP) {
-        super(tipoTripulante, cargo, legajo, sueldo);
+    public Copiloto(String nombre, String apellido, String DNI, String direccion, String nacionalidad, String telefono, String fechaNacimiento, TipoTripulante tipoTripulante, String cargo, float sueldo, String legajo, int horasVuelosCP, String licenciaVuelosCP) {
+        super(nombre, apellido, DNI, direccion, nacionalidad, telefono, fechaNacimiento, tipoTripulante, cargo, sueldo, legajo);
         this.horasVuelosCP = horasVuelosCP;
         this.licenciaVuelosCP = licenciaVuelosCP;
     }
