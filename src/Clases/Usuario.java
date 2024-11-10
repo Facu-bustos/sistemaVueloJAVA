@@ -1,5 +1,7 @@
 package Clases;
 
+import Excepciones.ContraseniaIncorrectaExcepcion;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -48,6 +50,15 @@ public abstract class Usuario extends Persona{
 
     public void setListaVuelos(List<Vuelo> listaVuelos) {
         this.listaVuelos = listaVuelos;
+    }
+
+
+    // METODO PARA VALIDAR CONTRASENIA
+
+    public void validarContrasenia(String contraseniaIngresada) throws ContraseniaIncorrectaExcepcion {
+        if (!this.contrasenia.equals(contraseniaIngresada)) {
+            throw new ContraseniaIncorrectaExcepcion("La contrasenia ingresada es incorrecta.");
+        }
     }
 
     // METODOS
