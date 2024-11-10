@@ -11,20 +11,8 @@ public class Piloto extends Tripulante{
 
     //CONSTRUCTOR
 
-
-    public Piloto(String telefono, String fechaNacimiento, String nacionalidad, String apellido, String DNI, String direccion, String nombre, TipoTripulante tipoTripulante, String cargo, String legajo, float sueldo, int horasVuelosP, String licenciaVuelosP) {
-        super(telefono, fechaNacimiento, nacionalidad, apellido, DNI, direccion, nombre, tipoTripulante, cargo, legajo, sueldo);
-        this.horasVuelosP = horasVuelosP;
-        this.licenciaVuelosP = licenciaVuelosP;
-    }
-
-    public Piloto(int horasVuelosP, String licenciaVuelosP) {
-        this.horasVuelosP = horasVuelosP;
-        this.licenciaVuelosP = licenciaVuelosP;
-    }
-
-    public Piloto(TipoTripulante tipoTripulante, String cargo, String legajo, float sueldo, int horasVuelosP, String licenciaVuelosP) {
-        super(tipoTripulante, cargo, legajo, sueldo);
+    public Piloto(String nombre, String apellido, String DNI, String direccion, String nacionalidad, String telefono, String fechaNacimiento, TipoTripulante tipoTripulante, String cargo, float sueldo, String legajo, int horasVuelosP, String licenciaVuelosP) {
+        super(nombre, apellido, DNI, direccion, nacionalidad, telefono, fechaNacimiento, tipoTripulante, cargo, sueldo, legajo);
         this.horasVuelosP = horasVuelosP;
         this.licenciaVuelosP = licenciaVuelosP;
     }
@@ -54,7 +42,6 @@ public class Piloto extends Tripulante{
     }
 
     //METODOS
-
 
     @Override
     public String toString() {

@@ -7,13 +7,13 @@ import java.util.Objects;
 
 public abstract class Usuario extends Persona{
 
-    //ATRIBUTOS
+    // ATRIBUTOS
 
     private String email;
     private String contrasenia;
     private List<Vuelo> listaVuelos;
-    //CONSTRUCTOR
 
+    // CONSTRUCTOR
 
     public Usuario(String nombre, String apellido, String DNI, String direccion, String nacionalidad, String telefono, String fechaNacimiento, String email, String contrasenia, List<Vuelo> listaVuelos) {
         super(nombre, apellido, DNI, direccion, nacionalidad, telefono, fechaNacimiento);
@@ -22,29 +22,35 @@ public abstract class Usuario extends Persona{
         this.listaVuelos = new ArrayList<>();
     }
 
+    // GETTER
+
     public String getEmail() {
         return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getContrasenia() {
         return contrasenia;
     }
 
-    public void setContrasenia(String contrasenia) {
-        this.contrasenia = contrasenia;
-    }
-
     public List<Vuelo> getListaVuelos() {
         return listaVuelos;
+    }
+
+    // SETTER
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setContrasenia(String contrasenia) {
+        this.contrasenia = contrasenia;
     }
 
     public void setListaVuelos(List<Vuelo> listaVuelos) {
         this.listaVuelos = listaVuelos;
     }
+
+    // METODOS
 
     @Override
     public boolean equals(Object o) {

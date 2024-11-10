@@ -10,8 +10,7 @@ public class Aeropuerto {
     private String pais;
     private String codigoAeropuerto;
     private int cantidadPistas;
-
-
+    
     //CONSTRUCTOR
 
     public Aeropuerto(String ciudad, int cantidadPistas, String codigoAeropuerto, String pais) {
