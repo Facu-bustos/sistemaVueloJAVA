@@ -42,6 +42,10 @@ public class Vuelo {
         this.estado_vuelo = estado_vuelo;
     }
 
+    public Vuelo() {
+
+    }
+
     //GETTER AND SETTERS
     public int getId_vuelo() {
         return id_vuelo;
