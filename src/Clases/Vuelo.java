@@ -42,6 +42,10 @@ public class Vuelo {
         this.estadoVuelo = estadoVuelo;
     }
 
+    public Vuelo() {
+
+    }
+
     // GETTER
 
 

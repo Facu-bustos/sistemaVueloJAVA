@@ -14,6 +14,10 @@ public class Escala {
         this.horaSalida = horaSalida;
     }
 
+    public Escala() {
+
+    }
+
 
     public String getAeropueto() {
         return aeropueto;
