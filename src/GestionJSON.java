@@ -20,17 +20,17 @@ public class GestionJSON {
         {
             JSONObject jvuelo=jvuelos.getJSONObject(i);
             Vuelo v = new Vuelo();
-            v.setId_vuelo(jvuelo.getInt("id_vuelo"));
+            v.setIdVuelo(jvuelo.getInt("id_vuelo"));
             v.setOrigen(jvuelo.getString("origen"));
             v.setDestino(jvuelo.getString("destino"));
-            v.setHora_salida(jvuelo.getString("hora_salida"));
-            v.setHora_llegada(jvuelo.getString("hora_llegada"));
+            v.setHoraSalida(jvuelo.getString("hora_salida"));
+            v.setHoraLlegada(jvuelo.getString("hora_llegada"));
             v.setDuracion(jvuelo.getString("duracion"));
             v.setPrecio(jvuelo.getDouble("precio"));
-            v.setCantidad_disponible(jvuelo.getInt("capacidad_disponible"));
+            v.setCantidadDisponible(jvuelo.getInt("capacidad_disponible"));
             v.setAerolinea(jvuelo.getString("aerolinea"));
             v.setClase(jvuelo.getString("clase"));
-            v.setNumero_vuelo(jvuelo.getString("numero_vuelo"));
+            v.setNumeroVuelo(jvuelo.getString("numero_vuelo"));
 
             JSONArray jescalas=jvuelo.getJSONArray("escalas");
             List<Escala>escala=new ArrayList<>();
@@ -39,12 +39,12 @@ public class GestionJSON {
                 JSONObject jescala=jescalas.getJSONObject(j);
                 Escala e= new Escala();
                 e.setAeropueto(jescala.getString("aeropuerto"));
-                e.setHora_salida(jescala.getString("hora_salida"));
+                e.setHoraSalida(jescala.getString("hora_salida"));
                 escala.add(e);
             }
             v.setEscalas(escala);
-            v.setTipo_vuelo(jvuelo.getString("tipo_vuelo"));
-            v.setEstado_vuelo(jvuelo.getString("estado_vuelo"));
+            v.setTipoVuelo(jvuelo.getString("tipo_vuelo"));
+            v.setEstadoVuelo(jvuelo.getString("estado_vuelo"));
             listaDeVuelos.add(v);
         }
 
