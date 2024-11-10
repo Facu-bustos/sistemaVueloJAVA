@@ -44,6 +44,7 @@ public class Vuelo {
 
     // GETTER
 
+
     public int getIdVuelo() {
         return idVuelo;
     }
