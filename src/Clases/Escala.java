@@ -14,7 +14,10 @@ public class Escala {
         this.horaSalida = horaSalida;
     }
 
-    // GETTER
+    public Escala() {
+
+    }
+
 
     public String getAeropueto() {
         return aeropueto;
@@ -43,4 +46,5 @@ public class Escala {
                 ", hora_salida='" + horaSalida + '\'' +
                 '}';
     }
+
 }

@@ -42,7 +42,12 @@ public class Vuelo {
         this.estadoVuelo = estadoVuelo;
     }
 
+    public Vuelo() {
+
+    }
+
     // GETTER
+
 
     public int getIdVuelo() {
         return idVuelo;
