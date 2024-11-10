@@ -16,11 +16,11 @@ public abstract class Persona {
     private String nacionalidad;
     private String telefono;
     private String fechaNacimiento;
-    private List<Vuelo> vuelos;
+
 
     //CONSTRUCTOR
 
-    public Persona(String nombre, String apellido, String DNI, String direccion, String nacionalidad, String telefono, String fechaNacimiento, List<Vuelo> vuelos) {
+    public Persona(String nombre, String apellido, String DNI, String direccion, String nacionalidad, String telefono, String fechaNacimiento) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.DNI = DNI;
@@ -28,7 +28,11 @@ public abstract class Persona {
         this.nacionalidad = nacionalidad;
         this.telefono = telefono;
         this.fechaNacimiento = fechaNacimiento;
-        this.vuelos = new ArrayList<>();
+
+    }
+
+    public Persona() {
+
     }
 
     public String getNombre() {
@@ -87,24 +91,20 @@ public abstract class Persona {
         this.fechaNacimiento = fechaNacimiento;
     }
 
-    public List<Vuelo> getVuelos() {
-        return vuelos;
-    }
 
-    public void setVuelos(List<Vuelo> vuelos) {
-        this.vuelos = vuelos;
-    }
+
+
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Persona persona)) return false;
-        return Objects.equals(nombre, persona.nombre) && Objects.equals(apellido, persona.apellido) && Objects.equals(DNI, persona.DNI) && Objects.equals(direccion, persona.direccion) && Objects.equals(nacionalidad, persona.nacionalidad) && Objects.equals(telefono, persona.telefono) && Objects.equals(fechaNacimiento, persona.fechaNacimiento) && Objects.equals(vuelos, persona.vuelos);
+        return Objects.equals(nombre, persona.nombre) && Objects.equals(apellido, persona.apellido) && Objects.equals(DNI, persona.DNI) && Objects.equals(direccion, persona.direccion) && Objects.equals(nacionalidad, persona.nacionalidad) && Objects.equals(telefono, persona.telefono) && Objects.equals(fechaNacimiento, persona.fechaNacimiento);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(nombre, apellido, DNI, direccion, nacionalidad, telefono, fechaNacimiento, vuelos);
+        return Objects.hash(nombre, apellido, DNI, direccion, nacionalidad, telefono, fechaNacimiento);
     }
 
     @Override
@@ -117,11 +117,11 @@ public abstract class Persona {
                 ", nacionalidad='" + nacionalidad + '\'' +
                 ", telefono='" + telefono + '\'' +
                 ", fechaNacimiento='" + fechaNacimiento + '\'' +
-                ", vuelos=" + vuelos +
                 '}';
     }
+}
 
 
     //METODOS
 
-}
+
