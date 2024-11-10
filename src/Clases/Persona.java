@@ -1,6 +1,8 @@
 package Clases;
 
 import java.util.Date;
+import java.util.List;
+import java.util.Objects;
 
 public abstract class Persona {
 
@@ -13,86 +15,96 @@ public abstract class Persona {
     private String nacionalidad;
     private String telefono;
     private String fechaNacimiento;
+    private List<Vuelo> vuelos;
 
     //CONSTRUCTOR
 
-    public Persona(String telefono, String fechaNacimiento, String nacionalidad, String apellido, String DNI, String direccion, String nombre) {
-        this.telefono = telefono;
-        this.fechaNacimiento = fechaNacimiento;
-        this.nacionalidad = nacionalidad;
+    public Persona(String nombre, String apellido, String DNI, String direccion, String nacionalidad, String telefono, String fechaNacimiento, List<Vuelo> vuelos) {
+        this.nombre = nombre;
         this.apellido = apellido;
         this.DNI = DNI;
         this.direccion = direccion;
-        this.nombre = nombre;
+        this.nacionalidad = nacionalidad;
+        this.telefono = telefono;
+        this.fechaNacimiento = fechaNacimiento;
+        this.vuelos = vuelos;
     }
-
-    public Persona() {
-
-    }
-
-    //GETTER
 
     public String getNombre() {
         return nombre;
     }
 
-    public String getFechaNacimiento() {
-        return fechaNacimiento;
-    }
-
-    public String getTelefono() {
-        return telefono;
-    }
-
-    public String getNacionalidad() {
-        return nacionalidad;
-    }
-
-    public String getDireccion() {
-        return direccion;
-    }
-
-    public String getDNI() {
-        return DNI;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getApellido() {
         return apellido;
     }
 
-
-    //SETTER
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
     }
 
-    public void setFechaNacimiento(String fechaNacimiento) {
-        this.fechaNacimiento = fechaNacimiento;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
-    }
-
-    public void setNacionalidad(String nacionalidad) {
-        this.nacionalidad = nacionalidad;
+    public String getDNI() {
+        return DNI;
     }
 
     public void setDNI(String DNI) {
         this.DNI = DNI;
     }
 
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
+    public String getDireccion() {
+        return direccion;
     }
 
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
 
-    //METODOS
+    public String getNacionalidad() {
+        return nacionalidad;
+    }
 
+    public void setNacionalidad(String nacionalidad) {
+        this.nacionalidad = nacionalidad;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public String getFechaNacimiento() {
+        return fechaNacimiento;
+    }
+
+    public void setFechaNacimiento(String fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
+    }
+
+    public List<Vuelo> getVuelos() {
+        return vuelos;
+    }
+
+    public void setVuelos(List<Vuelo> vuelos) {
+        this.vuelos = vuelos;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Persona persona)) return false;
+        return Objects.equals(nombre, persona.nombre) && Objects.equals(apellido, persona.apellido) && Objects.equals(DNI, persona.DNI) && Objects.equals(direccion, persona.direccion) && Objects.equals(nacionalidad, persona.nacionalidad) && Objects.equals(telefono, persona.telefono) && Objects.equals(fechaNacimiento, persona.fechaNacimiento) && Objects.equals(vuelos, persona.vuelos);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nombre, apellido, DNI, direccion, nacionalidad, telefono, fechaNacimiento, vuelos);
+    }
 
     @Override
     public String toString() {
@@ -103,7 +115,12 @@ public abstract class Persona {
                 ", direccion='" + direccion + '\'' +
                 ", nacionalidad='" + nacionalidad + '\'' +
                 ", telefono='" + telefono + '\'' +
-                ", fechaNacimiento=" + fechaNacimiento +
+                ", fechaNacimiento='" + fechaNacimiento + '\'' +
+                ", vuelos=" + vuelos +
                 '}';
     }
+
+
+    //METODOS
+
 }
