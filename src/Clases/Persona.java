@@ -1,5 +1,6 @@
 package Clases;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -27,7 +28,7 @@ public abstract class Persona {
         this.nacionalidad = nacionalidad;
         this.telefono = telefono;
         this.fechaNacimiento = fechaNacimiento;
-        this.vuelos = vuelos;
+        this.vuelos = new ArrayList<>();
     }
 
     public String getNombre() {
