@@ -16,7 +16,7 @@ public abstract class Usuario extends Persona{
     private String email;
     private String contrasenia;
     private List<Vuelo> listaVuelos;
-
+    
 
     // CONSTRUCTOR
 
@@ -54,8 +54,9 @@ public abstract class Usuario extends Persona{
     public void setListaVuelos(List<Vuelo> listaVuelos) {
         this.listaVuelos = listaVuelos;
     }
-
     
+
+
 
     // METODOS
 
