@@ -102,7 +102,7 @@ public class Pasajero extends Usuario {
                 "} " + super.toString();
     }
 
-    public Integer compraDeVuelo(List<Vuelo>listaVuelo) throws JSONException {
+    public static Integer compraDeVuelo(List<Vuelo>listaVuelo) throws JSONException {
 
         Scanner scanner1 = new Scanner(System.in);
         System.out.println("Elija el ID del vuelo a comprar:");
@@ -119,6 +119,7 @@ public class Pasajero extends Usuario {
                 if (v.getIdVuelo() == idVuelo) {
                     System.out.println("Vuelo encontrado:");
                     createJSON(idVuelo,listaVuelo);
+                    System.out.println("Vuelo comprado:");
                     datosDelViajeAdquirido(idVuelo,listaVuelo);
                     encontrado = true;
                     idBusqueda=idVuelo;
@@ -148,7 +149,7 @@ public class Pasajero extends Usuario {
 
     }
 
-    public void datosDelViajeAdquirido(Integer idVuelo, List<Vuelo>listaVuelo)
+    public static void datosDelViajeAdquirido(Integer idVuelo, List<Vuelo>listaVuelo)
     {
             if(idVuelo!=null)
             {

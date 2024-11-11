@@ -20,7 +20,6 @@ public class MenuPasajero {
         System.out.println("3: Modificar datos personales");
         System.out.println("4: Mostrar datos personales" );
         System.out.println("5: Cancelacion de vuelo adquirido");
-        Integer id= pasajero.compraDeVuelo(listaVuelo);
         String opc=scanner.nextLine();
         switch (opc)
         {
@@ -40,7 +39,6 @@ public class MenuPasajero {
                 pasajero.cancelacionDeVuelo();
                 break;
             case "6":
-                pasajero.datosDelViajeAdquirido(id,listaVuelo);
                 break;
             default:
                 System.out.println("Opcion Incorrecta,INTENTE NUEVAMENTE");

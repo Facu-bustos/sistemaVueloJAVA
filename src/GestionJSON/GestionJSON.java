@@ -57,6 +57,7 @@ public class GestionJSON {
         JSONObject jVuelo = new JSONObject();
         JSONArray jescalas = new JSONArray();
         for (Vuelo v : listaVuelo) {
+
             if (idVuelo == v.getIdVuelo()) {
                 jVuelo.put("id_vuelo", v.getIdVuelo());
                 jVuelo.put("origen", v.getOrigen());
@@ -79,7 +80,6 @@ public class GestionJSON {
                     jEscala.put("hora_salida", escala.getHoraSalida());
                     jescalas.put(jEscala);
                 }
-
                 // Añadir escalas al JSON si existiera alguna
                 jVuelo.put("escalas", jescalas);
                 break;
