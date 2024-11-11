@@ -55,9 +55,9 @@ public abstract class Usuario extends Persona{
 
     // METODO PARA VALIDAR CONTRASENIA
 
-    public void validarContrasenia(String contraseniaIngresada) throws ContraseniaIncorrectaExcepcion {
-        if (!this.contrasenia.equals(contraseniaIngresada)) {
-            throw new ContraseniaIncorrectaExcepcion("La contrasenia ingresada es incorrecta.");
+    public void validarUsuarioOContrasenia(String emailIngresado, String contraseniaIngresada) throws ContraseniaIncorrectaExcepcion {
+        if (!this.contrasenia.equals(contraseniaIngresada) || !this.email.equals(emailIngresado)){
+            throw new ContraseniaIncorrectaExcepcion("Usuario o contrasenia incorrecto/a");
         }
     }
 
