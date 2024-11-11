@@ -1,4 +1,9 @@
-package Clases;
+package GestionDeUsuario;
+import Clases.Administrador;
+import Clases.AgenteVenta;
+import Clases.Pasajero;
+import Clases.Usuario;
+
 import java.util.ArrayList;
 import java.util.List;
 

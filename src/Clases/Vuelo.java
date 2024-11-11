@@ -181,7 +181,7 @@ public class Vuelo {
     @Override
     public String toString() {
         return "Vuelo{" +
-                "idVuelo=" + idVuelo +
+                "idVuelo=" + idVuelo + System.lineSeparator()+
                 ", origen='" + origen + '\'' +
                 ", destino='" + destino + '\'' +
                 ", horaSalida='" + horaSalida + '\'' +
@@ -191,10 +191,10 @@ public class Vuelo {
                 ", cantidadDisponible=" + cantidadDisponible +
                 ", aerolinea='" + aerolinea + '\'' +
                 ", clase='" + clase + '\'' +
-                ", numeroVuelo='" + numeroVuelo + '\'' +
+                ", numeroVuelo='" + numeroVuelo + '\''  +
                 ", escalas=" + escalas +
                 ", tipoVuelo='" + tipoVuelo + '\'' +
-                ", estadoVuelo='" + estadoVuelo + '\'' +
+                ", estadoVuelo='" + estadoVuelo + '\''+  System.lineSeparator()+
                 '}';
     }
 }
