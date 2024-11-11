@@ -102,11 +102,12 @@ public class Pasajero extends Usuario {
                 "} " + super.toString();
     }
 
-    public void compraDeVuelo(List<Vuelo>listaVuelo) throws JSONException {
+    public Integer compraDeVuelo(List<Vuelo>listaVuelo) throws JSONException {
 
         Scanner scanner1 = new Scanner(System.in);
         System.out.println("Elija el ID del vuelo a comprar:");
         String id = scanner1.nextLine();
+        Integer idBusqueda=null;
         // Verificamos si la entrada es un número
         if (!id.matches("\\d+")) {  // Verificamos que contenga solo dígitos
             System.out.println("Error: Debe ingresar un número válido.");
@@ -118,15 +119,18 @@ public class Pasajero extends Usuario {
                 if (v.getIdVuelo() == idVuelo) {
                     System.out.println("Vuelo encontrado:");
                     createJSON(idVuelo,listaVuelo);
+                    datosDelViajeAdquirido(idVuelo,listaVuelo);
                     encontrado = true;
+                    idBusqueda=idVuelo;
                     break;
                 }
+
             }
             if (!encontrado) {
                 System.out.println("Error: No existe un vuelo con el ID " + idVuelo + ".");
             }
         }
-
+        return idBusqueda;
     }
 
     public void cancelacionDeVuelo()
@@ -144,9 +148,35 @@ public class Pasajero extends Usuario {
 
     }
 
-    public void datosDelViajeAdquirido()
+    public void datosDelViajeAdquirido(Integer idVuelo, List<Vuelo>listaVuelo)
     {
-        
+            if(idVuelo!=null)
+            {
+
+                for(Vuelo v: listaVuelo)
+                {
+                    if(v.getIdVuelo()==idVuelo)
+                    {
+                        System.out.println("ID VUELO: " + v.getIdVuelo());
+                        System.out.println("NUMERO DE VUELO: " + v.getNumeroVuelo());
+                        System.out.println("ORIGEN: " + v.getOrigen());
+                        System.out.println("DESTINO: " + v.getDestino());
+                        System.out.println("ESTADO DE VUELO" + v.getEstadoVuelo());
+                        System.out.println("AEROLINEA: " + v.getAerolinea());
+                        System.out.println("CLASE: " + v.getClase());
+                        System.out.println("DURACION: "+ v.getDuracion());
+                        for(Escala e: v.getEscalas())
+                        {
+                            System.out.println("Aeropuerto " + e.getAeropueto());
+                            System.out.println("HORA LLEGADA: " + e.getHoraSalida());
+                        }
+                        System.out.println("HORA DE SALIDA : " + v.getHoraSalida());
+                        System.out.println("HORA DE LLEGADA: " + v.getHoraLlegada());
+                        System.out.println("PRECIO: " + v.getPrecio());
+                        System.out.println("TIPO DE VUELO: " + v.getTipoVuelo());
+                    }
+                }
+            }
     }
 
 }
