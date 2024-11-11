@@ -6,14 +6,27 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 import org.json.JSONTokener;
 
 public class JSONUtiles {
 
-    public static void grabar(JSONArray array) {
+    public static void grabarArray(JSONArray array) {
         try {
-            FileWriter file = new FileWriter("biblioteca.json");
+            FileWriter file = new FileWriter("comprasVuelos.json");
             file.write(array.toString());
+            file.flush();
+            file.close();
+        } catch (IOException e) {
+
+            e.printStackTrace();
+        }
+    }
+
+    public static void grabar(JSONObject jsonObject) {
+        try {
+            FileWriter file = new FileWriter("comprasVuelos.json");
+            file.write(jsonObject.toString());
             file.flush();
             file.close();
         } catch (IOException e) {
