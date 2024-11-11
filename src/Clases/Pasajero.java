@@ -126,7 +126,7 @@ public class Pasajero extends Usuario {
                 System.out.println("Error: No existe un vuelo con el ID " + idVuelo + ".");
             }
         }
-        scanner.close();
+
     }
 
     public void cancelacionDeVuelo()
