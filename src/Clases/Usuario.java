@@ -1,6 +1,13 @@
 package Clases;
 
-import java.util.*;
+
+import Excepciones.ContraseniaIncorrectaExcepcion;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Objects;
+
 
 public abstract class Usuario extends Persona{
 
@@ -9,7 +16,7 @@ public abstract class Usuario extends Persona{
     private String email;
     private String contrasenia;
     private List<Vuelo> listaVuelos;
-    Scanner scanner;
+
 
     // CONSTRUCTOR
 
@@ -18,7 +25,6 @@ public abstract class Usuario extends Persona{
         this.email = email;
         this.contrasenia = contrasenia;
         this.listaVuelos = new ArrayList<>();
-        this.scanner = new Scanner(System.in);
     }
 
     public Usuario() {
@@ -49,13 +55,7 @@ public abstract class Usuario extends Persona{
         this.listaVuelos = listaVuelos;
     }
 
-    public Scanner getScanner() {
-        return scanner;
-    }
-
-    public void setScanner(Scanner scanner) {
-        this.scanner = scanner;
-    }
+    
 
     // METODOS
 
