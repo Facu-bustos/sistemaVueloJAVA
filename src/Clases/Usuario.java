@@ -22,6 +22,10 @@ public abstract class Usuario extends Persona{
         this.listaVuelos = new ArrayList<>();
     }
 
+    public Usuario() {
+
+    }
+
     // GETTER
 
     public String getEmail() {
