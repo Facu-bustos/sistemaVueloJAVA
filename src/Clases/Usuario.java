@@ -1,9 +1,6 @@
 package Clases;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public abstract class Usuario extends Persona{
 
@@ -12,6 +9,7 @@ public abstract class Usuario extends Persona{
     private String email;
     private String contrasenia;
     private List<Vuelo> listaVuelos;
+    Scanner scanner;
 
     // CONSTRUCTOR
 
@@ -20,38 +18,43 @@ public abstract class Usuario extends Persona{
         this.email = email;
         this.contrasenia = contrasenia;
         this.listaVuelos = new ArrayList<>();
+        this.scanner = new Scanner(System.in);
     }
 
     public Usuario() {
 
     }
 
-    // GETTER
-
     public String getEmail() {
         return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getContrasenia() {
         return contrasenia;
     }
 
-    public List<Vuelo> getListaVuelos() {
-        return listaVuelos;
-    }
-
-    // SETTER
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public void setContrasenia(String contrasenia) {
         this.contrasenia = contrasenia;
     }
 
+    public List<Vuelo> getListaVuelos() {
+        return listaVuelos;
+    }
+
     public void setListaVuelos(List<Vuelo> listaVuelos) {
         this.listaVuelos = listaVuelos;
+    }
+
+    public Scanner getScanner() {
+        return scanner;
+    }
+
+    public void setScanner(Scanner scanner) {
+        this.scanner = scanner;
     }
 
     // METODOS
@@ -77,4 +80,5 @@ public abstract class Usuario extends Persona{
                 ", listaVuelos=" + listaVuelos +
                 "} " + super.toString();
     }
+
 }
