@@ -1,3 +1,5 @@
+package GestionJSON;
+
 import Clases.Escala;
 import Clases.Vuelo;
 import JSONutiles.JSONUtiles;
@@ -49,5 +51,40 @@ public class GestionJSON {
         }
 
         return listaDeVuelos;
+    }
+
+    public static void createJSON(int idVuelo, List<Vuelo> listaVuelo) throws JSONException {
+        JSONObject jVuelo = new JSONObject();
+        JSONArray jescalas = new JSONArray();
+        for (Vuelo v : listaVuelo) {
+            if (idVuelo == v.getIdVuelo()) {
+                jVuelo.put("id_vuelo", v.getIdVuelo());
+                jVuelo.put("origen", v.getOrigen());
+                jVuelo.put("destino", v.getDestino());
+                jVuelo.put("hora_salida", v.getHoraSalida());
+                jVuelo.put("hora_llegada", v.getHoraLlegada());
+                jVuelo.put("duracion", v.getDuracion());
+                jVuelo.put("precio", v.getPrecio());
+                jVuelo.put("capacidad_disponible", v.getCantidadDisponible());
+                jVuelo.put("aerolinea", v.getAerolinea());
+                jVuelo.put("clase", v.getClase());
+                jVuelo.put("numero_vuelo", v.getNumeroVuelo());
+                jVuelo.put("tipo_vuelo", v.getTipoVuelo());
+                jVuelo.put("estado_vuelo", v.getEstadoVuelo());
+
+                // Recorrer y añadir escalas del vuelo actual si existiera
+                for (Escala escala : v.getEscalas()) {
+                    JSONObject jEscala = new JSONObject();
+                    jEscala.put("aeropuerto", escala.getAeropueto());
+                    jEscala.put("hora_salida", escala.getHoraSalida());
+                    jescalas.put(jEscala);
+                }
+
+                // Añadir escalas al JSON si existiera alguna
+                jVuelo.put("escalas", jescalas);
+                break;
+            }
+        }
+        JSONUtiles.grabar(jVuelo);
     }
 }

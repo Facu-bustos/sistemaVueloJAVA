@@ -1,18 +1,18 @@
 import Clases.Vuelo;
+import GestionDeMenues.GestionPasajero;
+import GestionJSON.GestionJSON;
+import Menues.MenuPasajero;
 import org.json.JSONException;
 
 import java.util.List;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws JSONException {
 
-        try
-        {
-            List<Vuelo>ListaVuelos=GestionJSON.mapeoVuelo();
-            System.out.println(ListaVuelos.toString());
-        }catch (JSONException e)
-        {
-            e.printStackTrace();
-        }
+
+        GestionPasajero GP = new GestionPasajero();
+        GP.llamadoAMenuPasajero();
+
+
     }
 }
