@@ -1,74 +1,60 @@
 package Clases;
 
+import GestionJSON.GestionJSON;
+import org.json.JSONException;
+
+import java.util.List;
+import java.util.Objects;
 import java.util.Queue;
 
 public class Aeropuerto {
 
     //ATRIBUTOS
 
-    private String ciudad;
-    private String pais;
-    private String codigoAeropuerto;
-    private int cantidadPistas;
-    
-    //CONSTRUCTOR
+    private String ubicacion;
+    List<Vuelo>listaVuelos;
 
-    public Aeropuerto(String ciudad, int cantidadPistas, String codigoAeropuerto, String pais) {
-        this.ciudad = ciudad;
-        this.cantidadPistas = cantidadPistas;
-        this.codigoAeropuerto = codigoAeropuerto;
-        this.pais = pais;
+
+    public Aeropuerto(String ubicacion, List<Vuelo> listaVuelos) throws JSONException {
+        this.ubicacion = ubicacion;
+        this.listaVuelos = GestionJSON.mapeoVuelo();
     }
 
-    public Aeropuerto(){
 
+
+    public String getUbicacion() {
+        return ubicacion;
     }
 
-    //SETTER
-
-    public void setCiudad(String ciudad) {
-        this.ciudad = ciudad;
+    public void setUbicacion(String ubicacion) {
+        this.ubicacion = ubicacion;
     }
 
-    public void setCantidadPistas(int cantidadPistas) {
-        this.cantidadPistas = cantidadPistas;
+    public List<Vuelo> getListaVuelos() {
+        return listaVuelos;
     }
 
-    public void setCodigoAeropuerto(String codigoAeropuerto) {
-        this.codigoAeropuerto = codigoAeropuerto;
+    public void setListaVuelos(List<Vuelo> listaVuelos) {
+        this.listaVuelos = listaVuelos;
     }
 
-    public void setPais(String pais) {
-        this.pais = pais;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Aeropuerto that)) return false;
+        return Objects.equals(ubicacion, that.ubicacion) && Objects.equals(listaVuelos, that.listaVuelos);
     }
 
-    //GETTTER
-
-    public String getCiudad() {
-        return ciudad;
+    @Override
+    public int hashCode() {
+        return Objects.hash(ubicacion, listaVuelos);
     }
-
-    public int getCantidadPistas() {
-        return cantidadPistas;
-    }
-
-    public String getCodigoAeropuerto() {
-        return codigoAeropuerto;
-    }
-
-    public String getPais() {
-        return pais;
-    }
-
-    //METODOS
 
     @Override
     public String toString() {
         return "Aeropuerto{" +
-                "ciudad='" + ciudad + '\'' +
-                ", pais='" + pais + '\'' +
-                ", codigoAeropuerto='" + codigoAeropuerto + '\'' +
-                ", cantidadPistas=" + cantidadPistas +
+                "ubicacion='" + ubicacion + '\'' +
+                ", listaVuelos=" + listaVuelos +
                 '}';
     }
 }
