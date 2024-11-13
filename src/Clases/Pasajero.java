@@ -21,13 +21,8 @@ public class Pasajero extends Usuario {
 
     //CONSTRUCTOR
 
-
-    public Pasajero(String nombre, String apellido, String DNI, String direccion, String nacionalidad, String telefono, String fechaNacimiento, String email, String contrasenia, List<Vuelo> listaVuelos, String numPasaporte, TipoPasajero tipoPasajero, TipoEstadoCheckIn estadoCheckIn, Scanner scanner) {
-        super(nombre, apellido, DNI, direccion, nacionalidad, telefono, fechaNacimiento, email, contrasenia, listaVuelos);
-        this.numPasaporte = numPasaporte;
-        this.tipoPasajero = tipoPasajero;
-        this.estadoCheckIn = estadoCheckIn;
-        this.scanner = new Scanner(System.in);
+    public Pasajero(String email, String contrasenia) {
+        super(email, contrasenia);
     }
 
     public Pasajero() {
