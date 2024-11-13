@@ -34,6 +34,7 @@ public class Pasajero extends Usuario {
 
     public Pasajero()
     {
+        super();
 
     }
     //Gette and setter
