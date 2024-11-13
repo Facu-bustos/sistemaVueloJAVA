@@ -14,14 +14,10 @@ public class Aeropuerto {
     private String ubicacion;
     List<Vuelo>listaVuelos;
 
-
     public Aeropuerto(String ubicacion, List<Vuelo> listaVuelos) throws JSONException {
         this.ubicacion = ubicacion;
-        this.listaVuelos = GestionJSON.mapeoVuelo();
+        this.listaVuelos = Pasajero.compraDeVuelo();
     }
-
-
-
     public String getUbicacion() {
         return ubicacion;
     }

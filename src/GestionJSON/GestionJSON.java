@@ -53,12 +53,10 @@ public class GestionJSON {
         return listaDeVuelos;
     }
 
-    public static void createJSON(int idVuelo, List<Vuelo> listaVuelo) throws JSONException {
+    public static void createJSON(List<Vuelo> listaVuelo) throws JSONException {
         JSONObject jVuelo = new JSONObject();
         JSONArray jescalas = new JSONArray();
         for (Vuelo v : listaVuelo) {
-
-            if (idVuelo == v.getIdVuelo()) {
                 jVuelo.put("id_vuelo", v.getIdVuelo());
                 jVuelo.put("origen", v.getOrigen());
                 jVuelo.put("destino", v.getDestino());
@@ -83,7 +81,7 @@ public class GestionJSON {
                 // Añadir escalas al JSON si existiera alguna
                 jVuelo.put("escalas", jescalas);
                 break;
-            }
+
         }
         JSONUtiles.grabar(jVuelo);
     }

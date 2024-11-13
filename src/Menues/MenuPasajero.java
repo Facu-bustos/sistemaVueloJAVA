@@ -11,7 +11,6 @@ import java.util.Scanner;
 public class MenuPasajero {
 
     public void switchPasajero() throws JSONException {
-        List<Vuelo>listaVuelo=GestionJSON.mapeoVuelo();
         Pasajero pasajero = new Pasajero();
         Scanner scanner = new Scanner(System.in);
         System.out.println("ELIGE UNA OPCION");
@@ -24,10 +23,10 @@ public class MenuPasajero {
         switch (opc)
         {
             case "1":
-               pasajero.lecturaDeListaVuelo();
+                pasajero.lecturaDeListaVuelo();
                 break;
             case "2":
-                pasajero.compraDeVuelo(listaVuelo);
+                pasajero.compraDeVuelo();
                 break;
             case "3":
                 pasajero.modifcarDatosPersonales();
@@ -36,7 +35,7 @@ public class MenuPasajero {
                 pasajero.mostrarDatosPersonales();
                 break;
             case "5":
-                pasajero.cancelacionDeVuelo();
+                pasajero.cancelacionDeVuelo(id);
                 break;
             case "6":
                 break;
