@@ -1,0 +1,31 @@
+{
+  "reservas": [
+    {
+      "idReserva": 201,
+      "idVuelo": 1,
+      "emailPasajero": "joaquin@java.com",
+      "fechaReserva": "2024-11-10T10:00:00",
+      "estadoReserva": "Confirmada",
+      "cantidadAsientos": 2,
+      "precioTotal": 2401
+    },
+    {
+      "idReserva": 202,
+      "idVuelo": 2,
+      "emailPasajero": "facundo@java.com",
+      "fechaReserva": "2024-11-15T11:00:00",
+      "estadoReserva": "Pendiente",
+      "cantidadAsientos": 1,
+      "precioTotal": 800
+    },
+    {
+      "idReserva": 203,
+      "idVuelo": 3,
+      "emailPasajero": "messi@java.com",
+      "fechaReserva": "2024-11-12T15:30:00",
+      "estadoReserva": "Confirmada",
+      "cantidadAsientos": 1,
+      "precioTotal": 150
+    }
+  ]
+}

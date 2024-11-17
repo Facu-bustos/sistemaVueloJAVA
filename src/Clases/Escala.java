@@ -4,13 +4,13 @@ public class Escala {
 
     // ATRIBUTOS
 
-    private String aeropueto;
+    private String aeropuerto;
     private String horaSalida;
 
     // CONSTRUCTOR
 
-    public Escala(String aeropueto, String horaSalida) {
-        this.aeropueto = aeropueto;
+    public Escala(String aeropuerto, String horaSalida) {
+        this.aeropuerto = aeropuerto;
         this.horaSalida = horaSalida;
     }
 
@@ -20,7 +20,7 @@ public class Escala {
 
 
     public String getAeropueto() {
-        return aeropueto;
+        return aeropuerto;
     }
 
     public String getHoraSalida() {
@@ -30,7 +30,7 @@ public class Escala {
     // SETTER
 
     public void setAeropueto(String aeropueto) {
-        this.aeropueto = aeropueto;
+        this.aeropuerto = aeropueto;
     }
 
     public void setHoraSalida(String horaSalida) {
@@ -42,7 +42,7 @@ public class Escala {
     @Override
     public String toString() {
         return "Escala{" +
-                "aeropueto='" + aeropueto + '\'' +
+                "aeropueto='" + aeropuerto + '\'' +
                 ", hora_salida='" + horaSalida + '\'' +
                 '}';
     }
