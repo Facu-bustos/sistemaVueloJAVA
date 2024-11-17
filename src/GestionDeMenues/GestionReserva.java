@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class GestionReserva {
+
     private List<Reserva> reservas;
 
     public GestionReserva(List<Reserva> reservas) {

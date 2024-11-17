@@ -10,7 +10,10 @@ import java.util.Scanner;
 
 public class GestionVuelo {
 
-    public static void mostrarInformacionVuelo(JSONObject vuelo) throws JSONException, JSONException {
+    // MOSTRADO DE INFORMACION DE UN VUELO
+
+    public static void mostrarInformacionVuelo(JSONObject vuelo) throws JSONException {
+
         int idVuelo = vuelo.getInt("idVuelo");
         String origen = vuelo.getString("origen");
         String destino = vuelo.getString("destino");
@@ -54,6 +57,8 @@ public class GestionVuelo {
 
         System.out.println("----------------------------");
     }
+
+    // RESERVACION DE VUELO
 
     public void reservarVuelo(Scanner scanner) throws JSONException {
         JSONArray vuelosArray = new JSONArray(JSONUtiles.leer("vuelos.json"));

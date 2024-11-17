@@ -12,7 +12,7 @@ import java.util.List;
 
 public class GestionJSON {
 
-    public static List<Vuelo> mapeoVuelo () throws JSONException {
+    public static List<Vuelo> mapeoVuelo() throws JSONException {
         List<Vuelo>listaDeVuelos=new ArrayList<>();
 
         JSONObject json = new JSONObject(JSONUtiles.leer("vuelos.json"));

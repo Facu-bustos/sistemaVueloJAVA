@@ -2,17 +2,11 @@ package Clases;
 
 import Menues.MenuAdministrador;
 import Menues.MenuAgenteVentas;
-import Menues.MenuPasajero;
-import GestionDeUsuario.GestionUsuario;
 import org.json.JSONException;
 
 import java.util.Scanner;
 
-import static Menues.MenuPasajero.mostrarMenu;
-
 public class SistemaPrincipal {
-
-    private static GestionUsuario gestionUsuario = new GestionUsuario();
 
     public static void main(String[] args) throws JSONException {
 
@@ -31,13 +25,13 @@ public class SistemaPrincipal {
 
             switch (opcion) {
                 case 1:
-                    MenuAdministrador.mostrarMenu(scanner);
+                    System.out.println("Ingresando como administrador...");
                     break;
                 case 2:
-                    mostrarMenu(scanner);
+                    System.out.println("Ingresando como pasajero...");
                     break;
                 case 3:
-                    MenuAgenteVentas.mostrarMenu(scanner);
+                    System.out.println("Ingresando como agente de venta...");
                     break;
                 case 4:
                     System.out.println("Saliendo del sistema. ¡Adiós!");
@@ -57,18 +51,18 @@ public class SistemaPrincipal {
         String password = scanner.nextLine();
 
         // Intentar autenticar al administrador
-        if (gestionUsuario.autenticarAdministrador(email, password)) {
+        /*if (gestionUsuario.autenticarAdministrador(email, password)) {
             System.out.println("Inicio de sesión exitoso. ¡Bienvenido al sistema!");
-            mostrarMenu(scanner); // Mostrar el menú de opciones
+            mostrarMenu(); // Mostrar el menú de opciones
         } else {
             System.out.println("Error: Email o contraseña incorrectos.");
         }
 
         scanner.close();
-    }
+    }*/
 
 
-    private static void agregarAdministrador(Scanner scanner) {
+    /*private static void agregarAdministrador() {
         System.out.print("Ingrese el email del nuevo administrador: ");
         String email = scanner.nextLine();
 
@@ -78,9 +72,9 @@ public class SistemaPrincipal {
         Administrador nuevoAdmin = new Administrador(email, password);
         gestionUsuario.registrarUsuario(usuario,nuevoAdmin);
         System.out.println("Administrador agregado exitosamente.");
-    }
+    }*/
 
-    private static void agregarPasajero(Scanner scanner) {
+    /*private static void agregarPasajero() {
         System.out.print("Ingrese el email del pasajero: ");
         String email = scanner.nextLine();
 
@@ -96,9 +90,9 @@ public class SistemaPrincipal {
         Pasajero nuevoPasajero = new Pasajero(email, password, numPasaporte, tipoPasajero);
         gestionUsuario.agregarPasajero(nuevoPasajero);
         System.out.println("Pasajero agregado exitosamente.");
-    }
+    }*/
 
-    private static void agregarAgenteDeVentas(Scanner scanner) {
+    /*private static void agregarAgenteDeVentas(Scanner scanner) {
         System.out.print("Ingrese el email del agente de ventas: ");
         String email = scanner.nextLine();
 
@@ -108,9 +102,9 @@ public class SistemaPrincipal {
         AgenteVenta nuevoAgente = new AgenteVenta(email, password);
         gestionUsuario.agregarAgenteDeVentas(nuevoAgente);
         System.out.println("Agente de ventas agregado exitosamente.");
-    }
+    }*/
 
-    private static void modificarDatosUsuario(Scanner scanner) {
+    /*private static void modificarDatosUsuario(Scanner scanner) {
         System.out.print("Ingrese el email del usuario a modificar: ");
         String email = scanner.nextLine();
 
@@ -129,26 +123,26 @@ public class SistemaPrincipal {
         usuario.setPassword(nuevaPassword);
 
         System.out.println("Datos modificados exitosamente.");
-    }
+    }*/
 
-    private static void listarAdministradores() {
+    /*private static void listarAdministradores() {
         System.out.println("Lista de administradores:");
         for (Administrador admin : gestionUsuario.obtenerAdministradores()) {
             System.out.println("Email: " + admin.getEmail());
         }
-    }
+    }*/
 
-    private static void listarPasajeros() {
+    /*private static void listarPasajeros() {
         System.out.println("Lista de pasajeros:");
         for (Pasajero pasajero : gestionUsuario.obtenerPasajeros()) {
             System.out.println("Email: " + pasajero.getEmail() + ", Número de pasaporte: " + pasajero.getNumPasaporte());
         }
-    }
+    }*/
 
-    private static void listarAgentesDeVentas() {
+    /*private static void listarAgentesDeVentas() {
         System.out.println("Lista de agentes de ventas:");
         for (AgenteVenta agente : gestionUsuario.obtenerAgentesDeVentas()) {
             System.out.println("Email: " + agente.getEmail());
-        }
+        }*/
     }
 }

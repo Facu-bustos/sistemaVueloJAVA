@@ -1,4 +1,5 @@
 import GestionDeMenues.GestionPasajero;
+import Menues.MenuPasajero;
 import org.json.JSONException;
 
 public class Main {
@@ -9,12 +10,14 @@ public class Main {
         //SI SOMOS AGENTE DE VENTA ENTRAR COMO AGENTE DE VENTA
         //SI SOMOS ADMINISTRADO ENTRAR COMO ADMINISTRADOR
 
+        /*GestionPasajero GP = new GestionPasajero();
+        GP.llamadoPasajero();*/
 
-        GestionPasajero GP = new GestionPasajero();
-        GP.llamadoAMenuPasajero();
+        /*GestionAgenteDeVentas GAdV = new GestionAgenteDeVentas();
+        GAdV.llamadoAgenteDeVentas();*/
 
-        /*GestionAgenteDeVentas GA = new GestionAgenteDeVentas();
-        GA.llamadoAgenteDeVentas();*/
+        /*GestionAdministrador GA = new GestionAdministrador();
+        GA.llamadoAdministrador();*/
 
 
     }

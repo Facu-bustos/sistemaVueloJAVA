@@ -55,15 +55,6 @@ public abstract class Usuario extends Persona{
         this.listaVuelos = listaVuelos;
     }
 
-
-    // METODO PARA VALIDAR CONTRASENIA
-
-    public void validarUsuarioOContrasenia(String emailIngresado, String contraseniaIngresada) throws ContraseniaIncorrectaExcepcion {
-        if (!this.contrasenia.equals(contraseniaIngresada) || !this.email.equals(emailIngresado)){
-            throw new ContraseniaIncorrectaExcepcion("Usuario o contrasenia incorrecto/a");
-        }
-    }
-
     // METODOS
 
     @Override
@@ -86,5 +77,13 @@ public abstract class Usuario extends Persona{
                 ", contrasenia='" + contrasenia + '\'' +
                 ", listaVuelos=" + listaVuelos +
                 "} " + super.toString();
+    }
+
+    // VALIDAR CONTRASENIA
+
+    public void validarUsuarioOContrasenia(String emailIngresado, String contraseniaIngresada) throws ContraseniaIncorrectaExcepcion {
+        if (!this.contrasenia.equals(contraseniaIngresada) || !this.email.equals(emailIngresado)){
+            throw new ContraseniaIncorrectaExcepcion("Usuario o contrasenia incorrecto/a");
+        }
     }
 }

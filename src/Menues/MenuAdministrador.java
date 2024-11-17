@@ -1,6 +1,8 @@
 package Menues;
 
-import Clases.Vuelo;
+import Clases.*;
+import GestionDeMenues.*;
+import GestionDeMenues.GestionAdministrador;
 import JSONutiles.JSONUtiles;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -11,178 +13,63 @@ import java.util.Scanner;
 
 public class MenuAdministrador {
 
+    public void mostrarMenu() throws JSONException{
 
-    public static void mostrarMenu(Scanner scanner) {
+        GestionAdministrador gestorAdmin = new GestionAdministrador();
+        Scanner scanner = new Scanner(System.in);
+
         int opcion;
 
         do {
             System.out.println("=== Menú Administrador ===");
             System.out.println("1. Ver lista de vuelos");
-            System.out.println("2. Agregar un nuevo vuelo");
-            System.out.println("3. Modificar un vuelo");
-            System.out.println("4. Eliminar un vuelo");
-            System.out.println("5. Volver al menú principal");
+            System.out.println("2. Ver informacion de un vuelo en especifico");
+            System.out.println("3. Agregar un nuevo vuelo");
+            System.out.println("4. Modificar un vuelo");
+            System.out.println("5. Eliminar un vuelo");
+            System.out.println("6. Eliminar un usuario");
+            System.out.println("7. Asignar tripulacion de empleados a un vuelo");
+            System.out.println("8. Ver tripulacion de empleados de un vuelo");
+            System.out.println("9. Volver al menú principal");
             System.out.print("Seleccione una opción: ");
+
             opcion = scanner.nextInt();
             scanner.nextLine(); // Limpiar buffer
 
             switch (opcion) {
                 case 1:
-                    System.out.println("Mostrando lista de vuelos...");
-
+                    gestorAdmin.listarVuelos();
                     break;
                 case 2:
-                    System.out.println("Agregando un nuevo vuelo...");
-                    // Lógica para agregar un vuelo
+                    System.out.println("Mostrando informacion de un vuelo especifico...");
                     break;
                 case 3:
+                    gestorAdmin.agregarVuelo();
+                    break;
+                case 4:
                     System.out.println("Modificando un vuelo...");
                     // Lógica para modificar un vuelo
                     break;
-                case 4:
+                case 5:
                     System.out.println("Eliminando un vuelo...");
                     // Lógica para eliminar un vuelo
                     break;
-                case 5:
+                case 6:
+                    System.out.println("Eliminando un usuario...");
+                    break;
+                case 7:
+                    System.out.println("Asignando tripulacion...");
+                    break;
+                case 8:
+                    System.out.println("Mostrando tripulacion de vuelo...");
+                    break;
+                case 9:
                     System.out.println("Volviendo al menú principal...");
                     break;
                 default:
                     System.out.println("Opción no válida. Intente nuevamente.");
             }
-        } while (opcion != 5);
-    }
-
-    public void listarVuelos() throws JSONException {
-        System.out.println("=== Lista de Vuelos ===");
-
-        JSONArray vuelosArray = new JSONArray(JSONUtiles.leer("vuelos.json"));
-
-        for (int i = 0; i < vuelosArray.length(); i++) {
-            JSONObject vueloJson = vuelosArray.getJSONObject(i);
-
-            Vuelo vuelo = new Vuelo(
-                    vueloJson.getInt("idVuelo"),
-                    vueloJson.getString("origen"),
-                    vueloJson.getString("destino"),
-                    vueloJson.getString("horaSalida"),
-                    vueloJson.getString("horaLlegada"),
-                    vueloJson.getString("duracion"),
-                    vueloJson.getDouble("precio"),
-                    vueloJson.getInt("cantidadDisponible"),
-                    vueloJson.getString("aerolinea"),
-                    vueloJson.getString("clase"),
-                    vueloJson.getString("numeroVuelo"),
-                    new ArrayList<>(), // Por ahora vacía, puedes adaptar para leer las escalas
-                    vueloJson.getString("tipoVuelo"),
-                    vueloJson.getString("estadoVuelo")
-            );
-
-            System.out.println(vuelo);
-        }
-    }
-
-    public void agregarVuelo(Scanner scanner) throws JSONException {
-        JSONArray vuelosArray = new JSONArray(JSONUtiles.leer("vuelos.json"));
-
-        System.out.print("Ingrese el origen: ");
-        String origen = scanner.nextLine();
-        System.out.print("Ingrese el destino: ");
-        String destino = scanner.nextLine();
-        System.out.print("Ingrese la hora de salida: ");
-        String horaSalida = scanner.nextLine();
-        System.out.print("Ingrese la hora de llegada: ");
-        String horaLlegada = scanner.nextLine();
-        System.out.print("Ingrese la duración: ");
-        String duracion = scanner.nextLine();
-        System.out.print("Ingrese el precio: ");
-        double precio = scanner.nextDouble();
-        scanner.nextLine(); // Limpiar buffer
-        System.out.print("Ingrese la aerolínea: ");
-        String aerolinea = scanner.nextLine();
-
-        // Crear un nuevo objeto JSON para el vuelo
-        JSONObject nuevoVuelo = new JSONObject();
-        nuevoVuelo.put("idVuelo", vuelosArray.length() + 1); // ID basado en el tamaño actual
-        nuevoVuelo.put("origen", origen);
-        nuevoVuelo.put("destino", destino);
-        nuevoVuelo.put("horaSalida", horaSalida);
-        nuevoVuelo.put("horaLlegada", horaLlegada);
-        nuevoVuelo.put("duracion", duracion);
-        nuevoVuelo.put("precio", precio);
-        nuevoVuelo.put("cantidadDisponible", 100); // Por defecto
-        nuevoVuelo.put("aerolinea", aerolinea);
-        nuevoVuelo.put("clase", "Económica");
-        nuevoVuelo.put("numeroVuelo", "V-" + (vuelosArray.length() + 1));
-        nuevoVuelo.put("escalas", new JSONArray());
-        nuevoVuelo.put("tipoVuelo", "Directo");
-        nuevoVuelo.put("estadoVuelo", "Activo");
-
-        // Agregar el nuevo vuelo al array y guardar en el archivo
-        vuelosArray.put(nuevoVuelo);
-        JSONUtiles.grabarArray(vuelosArray);
-
-        System.out.println("Vuelo agregado exitosamente.");
-    }
-
-    public void modificarVuelo(Scanner scanner) throws JSONException {
-        JSONArray vuelosArray = new JSONArray(JSONUtiles.leer("vuelos.json"));
-
-        listarVuelos();
-        System.out.print("Ingrese el ID del vuelo a modificar: ");
-        int idVuelo = scanner.nextInt();
-        scanner.nextLine(); // Limpiar buffer
-
-        boolean encontrado = false;
-
-        for (int i = 0; i < vuelosArray.length(); i++) {
-            JSONObject vueloJson = vuelosArray.getJSONObject(i);
-
-            if (vueloJson.getInt("idVuelo") == idVuelo) {
-                System.out.print("Ingrese el nuevo precio: ");
-                double nuevoPrecio = scanner.nextDouble();
-                scanner.nextLine(); // Limpiar buffer
-
-                vueloJson.put("precio", nuevoPrecio);
-                encontrado = true;
-                break;
-            }
-        }
-
-        if (encontrado) {
-            JSONUtiles.grabarArray(vuelosArray);
-            System.out.println("Vuelo modificado correctamente.");
-        } else {
-            System.out.println("Vuelo no encontrado.");
-        }
-    }
-
-
-    public void eliminarVuelo(Scanner scanner) throws JSONException {
-        JSONArray vuelosArray = new JSONArray(JSONUtiles.leer("vuelos.json"));
-
-        listarVuelos();
-        System.out.print("Ingrese el ID del vuelo a eliminar: ");
-        int idVuelo = scanner.nextInt();
-        scanner.nextLine(); // Limpiar buffer
-
-        boolean encontrado = false;
-
-        for (int i = 0; i < vuelosArray.length(); i++) {
-            JSONObject vueloJson = vuelosArray.getJSONObject(i);
-
-            if (vueloJson.getInt("idVuelo") == idVuelo) {
-                vuelosArray.remove(i);
-                encontrado = true;
-                break;
-            }
-        }
-
-        if (encontrado) {
-            JSONUtiles.grabarArray(vuelosArray);
-            System.out.println("Vuelo eliminado correctamente.");
-        } else {
-            System.out.println("Vuelo no encontrado.");
-        }
+        } while (opcion != 9);
     }
 
 
