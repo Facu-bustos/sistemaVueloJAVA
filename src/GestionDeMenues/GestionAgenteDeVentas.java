@@ -1,8 +1,5 @@
 package GestionDeMenues;
 
-import Clases.Pasajero;
-import Menues.MenuAgenteDeVentas;
-import Menues.MenuPasajero;
 import org.json.JSONException;
 
 public class GestionAgenteDeVentas {
