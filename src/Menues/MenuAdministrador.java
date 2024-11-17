@@ -13,7 +13,7 @@ import java.util.Scanner;
 
 public class MenuAdministrador {
 
-    public void mostrarMenu() throws JSONException{
+    public static void mostrarMenu() throws JSONException{
 
         GestionAdministrador gestorAdmin = new GestionAdministrador();
         Scanner scanner = new Scanner(System.in);
@@ -41,14 +41,13 @@ public class MenuAdministrador {
                     gestorAdmin.listarVuelos();
                     break;
                 case 2:
-                    System.out.println("Mostrando informacion de un vuelo especifico...");
+                    /*GestionVuelo.mostrarInformacionVuelo();*/
                     break;
                 case 3:
                     gestorAdmin.agregarVuelo();
                     break;
                 case 4:
-                    System.out.println("Modificando un vuelo...");
-                    // Lógica para modificar un vuelo
+                    gestorAdmin.modificarVuelo();
                     break;
                 case 5:
                     System.out.println("Eliminando un vuelo...");

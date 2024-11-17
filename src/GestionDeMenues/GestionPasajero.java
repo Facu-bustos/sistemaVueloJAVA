@@ -15,8 +15,6 @@ public class GestionPasajero {
 
     private Scanner scanner = new Scanner(System.in);
 
-
-
     public int compraDeVuelo(List<Vuelo> listaVuelo) throws JSONException {
 
         System.out.println("Elija el ID del vuelo a comprar:");

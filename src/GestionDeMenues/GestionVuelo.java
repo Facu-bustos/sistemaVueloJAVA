@@ -10,6 +10,8 @@ import java.util.Scanner;
 
 public class GestionVuelo {
 
+    private Scanner scanner = new Scanner(System.in);
+
     // MOSTRADO DE INFORMACION DE UN VUELO
 
     public static void mostrarInformacionVuelo(JSONObject vuelo) throws JSONException {
@@ -60,7 +62,7 @@ public class GestionVuelo {
 
     // RESERVACION DE VUELO
 
-    public void reservarVuelo(Scanner scanner) throws JSONException {
+    public void reservarVuelo() throws JSONException {
         JSONArray vuelosArray = new JSONArray(JSONUtiles.leer("vuelos.json"));
         JSONArray reservasArray = new JSONArray(JSONUtiles.leer("reservas.json"));
 

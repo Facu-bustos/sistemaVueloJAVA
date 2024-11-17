@@ -20,6 +20,7 @@ public class MenuPasajero {
 
         List<Vuelo> listaVuelo = new ArrayList<>();
         listaVuelo = GestionJSON.mapeoVuelo();
+        /*List<Vuelo> listaVuelo = GestionJSON.mapeoVuelo();*/
         GestionPasajero gestorP = new GestionPasajero();
         Scanner scanner = new Scanner(System.in);
 

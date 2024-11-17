@@ -94,7 +94,7 @@ public class GestionAdministrador {
 
     // MODIFICACION DE VUELO
 
-    public void modificarVuelo(Scanner scanner) throws JSONException {
+    public void modificarVuelo() throws JSONException {
         JSONArray vuelosArray = new JSONArray(JSONUtiles.leer("vuelos.json"));
 
         listarVuelos();
@@ -128,7 +128,7 @@ public class GestionAdministrador {
 
     // ELIMINACION DE VUELO
 
-    public void eliminarVuelo(Scanner scanner) throws JSONException {
+    public void eliminarVuelo() throws JSONException {
         JSONArray vuelosArray = new JSONArray(JSONUtiles.leer("vuelos.json"));
 
         listarVuelos();

@@ -15,7 +15,7 @@ public class GestionAgenteDeVentas {
 
     // BUSCADOR DE VUELO POR DESTINO Y ORIGEN
 
-    public static void buscarVueloPorDestinoUOrigen(Scanner scanner) throws JSONException {
+    public void buscarVueloPorDestinoUOrigen() throws JSONException {
         JSONArray vuelosArray = new JSONArray(JSONUtiles.leer("vuelos.json"));
 
         System.out.print("Ingrese el origen o destino del vuelo: ");
