@@ -16,11 +16,11 @@ public class MenuAdministrador {
         Pasajero pasajero = new Pasajero();
         Scanner scanner = new Scanner(System.in);
         System.out.println("ELIGE UNA OPCION");
-        System.out.println("1: Mira lista de vuelos disponibles ");
-        System.out.println("2: Vender vuelos disponibles");
-        System.out.println("3:");
-        System.out.println("4:");
-        System.out.println("5:");
+        System.out.println("1: Generar informe general");
+        System.out.println("2: Consultar historial pasajero");
+        System.out.println("3: Consultar estado vuelo");
+        System.out.println("4: Consultar datos personales");
+        System.out.println("5: ");
 
         String opc=scanner.nextLine();
         switch (opc)
