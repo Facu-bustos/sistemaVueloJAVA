@@ -8,9 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-    public class GestionUsuario {
+    public class GestionUsuario {}
 
-        private List<Administrador> administradores;
+        /*private List<Administrador> administradores;
 
         public GestionUsuario() {
             administradores = new ArrayList<>();
@@ -45,7 +45,7 @@ import java.util.List;
             }
             return false; // Credenciales no válidas
         }
-    }
+    }*/
         /*
 
         // ALTA DE USUARIO

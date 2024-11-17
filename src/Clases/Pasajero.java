@@ -74,7 +74,7 @@ public class Pasajero extends Usuario {
         return Objects.hash(super.hashCode(), numPasaporte, tipoPasajero, estadoCheckIn, scanner);
     }
 
-    public List<Vuelo> lecturaDeListaVuelo()
+    public List<Vuelo> lecturaDeListaVuelo() throws JSONException
     {
         try {
         List<Vuelo>listaVuelo=GestionJSON.mapeoVuelo();
@@ -97,7 +97,7 @@ public class Pasajero extends Usuario {
                 "} " + super.toString();
     }
 
-    public static Integer compraDeVuelo(List<Vuelo>listaVuelo) throws JSONException {
+    /*public static Integer compraDeVuelo(List<Vuelo>listaVuelo) throws JSONException {
 
         Scanner scanner1 = new Scanner(System.in);
         System.out.println("Elija el ID del vuelo a comprar:");
@@ -125,6 +125,31 @@ public class Pasajero extends Usuario {
             if (!encontrado) {
                 System.out.println("Error: No existe un vuelo con el ID " + idVuelo + ".");
             }
+        }
+        return idBusqueda;
+    } */
+
+    public static Integer compraDeVuelo(List<Vuelo>listaVuelo) throws JSONException {
+
+        Scanner scanner1 = new Scanner(System.in);
+        System.out.println("Elija el ID del vuelo a comprar:");
+        int idVuelo = scanner1.nextInt();
+        scanner1.nextLine();
+        Integer idBusqueda=null;
+        boolean encontrado = false;
+        // buscamos el vuelo en la lista de vuelos , si hay coincidencia accedemos a persistir
+        for (Vuelo v : listaVuelo) {
+            if (v.getIdVuelo() == idVuelo) {
+                System.out.println("Vuelo encontrado:");
+                createJSON(idVuelo,listaVuelo);
+                System.out.println("Vuelo comprado:");
+                datosDelViajeAdquirido(idVuelo,listaVuelo);
+                encontrado = true;
+                idBusqueda=idVuelo;
+                break;
+            } else {
+            System.out.println("Error: No existe un vuelo con el ID " + idVuelo + ".");
+        }
         }
         return idBusqueda;
     }
