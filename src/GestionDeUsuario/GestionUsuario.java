@@ -10,13 +10,43 @@ import java.util.List;
 
     public class GestionUsuario {
 
-        // Lista de todos los usuarios en el sistema
-        private List<Usuario> usuarios;
+        private List<Administrador> administradores;
 
-        // CONSTRUCTOR
         public GestionUsuario() {
-            usuarios = new ArrayList<>();
+            administradores = new ArrayList<>();
+            inicializarAdministradores(); // Llamada para crear los administradores predeterminados
         }
+
+        private void inicializarAdministradores() {
+            // Crear dos administradores con email y contraseña
+            Administrador admin1 = new Administrador("joaco@java.com", "joaco");
+            Administrador admin2 = new Administrador("facundo@java.com", "facundo");
+
+            // Agregarlos a la lista de administradores
+            administradores.add(admin1);
+            administradores.add(admin2);
+        }
+
+        public List<Administrador> verAdministradores() {
+            return administradores;
+        }
+
+        public void agregarAdministrador(Administrador admin) {
+            administradores.add(admin);
+        }
+
+        // Metodo para autenticar al administrador
+
+        public boolean autenticarAdministrador(String email, String contrasenia) {
+            for (Administrador admin : administradores) {
+                if (admin.getEmail().equals(email) && admin.getContrasenia().equals(contrasenia)) {
+                    return true; // Credenciales válidas
+                }
+            }
+            return false; // Credenciales no válidas
+        }
+    }
+        /*
 
         // ALTA DE USUARIO
 
@@ -105,3 +135,4 @@ import java.util.List;
         }
     }
 
+         */

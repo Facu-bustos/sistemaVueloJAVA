@@ -23,6 +23,7 @@ public class Pasajero extends Usuario {
     Scanner scanner;
 
     //CONSTRUCTOR
+
     public Pasajero(String nombre, String apellido, String DNI, String direccion, String nacionalidad, String telefono, String fechaNacimiento, String email, String contrasenia, List<Vuelo> listaVuelos, String numPasaporte, TipoPasajero tipoPasajero, TipoEstadoCheckIn estadoCheckIn, Integer idVueloPasajero, Scanner scanner) {
         super(nombre, apellido, DNI, direccion, nacionalidad, telefono, fechaNacimiento, email, contrasenia, listaVuelos);
         this.numPasaporte = numPasaporte;
@@ -30,6 +31,11 @@ public class Pasajero extends Usuario {
         this.estadoCheckIn = estadoCheckIn;
         this.idVueloPasajero = idVueloPasajero;
         this.scanner = scanner;
+
+
+    public Pasajero(String email, String contrasenia) {
+        super(email, contrasenia);
+
     }
 
     public Pasajero()

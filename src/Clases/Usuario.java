@@ -17,11 +17,14 @@ public abstract class Usuario extends Persona{
 
     // CONSTRUCTOR
 
-    public Usuario(String nombre, String apellido, String DNI, String direccion, String nacionalidad, String telefono, String fechaNacimiento, String email, String contrasenia, List<Vuelo> listaVuelos) {
-        super(nombre, apellido, DNI, direccion, nacionalidad, telefono, fechaNacimiento);
+
+    public Usuario(String email, String contrasenia) {
         this.email = email;
         this.contrasenia = contrasenia;
-        this.listaVuelos = new ArrayList<>();
+    }
+
+    public Usuario() {
+
     }
 
     public Usuario() {

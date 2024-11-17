@@ -1,0 +1,44 @@
+{
+  "usuarios": [
+    {
+      "email": "joaquin@java.com",
+      "contrasenia": "123456",
+      "tipo": "pasajero",
+      "listaVuelos": [
+        1,
+        2
+      ]
+    },
+    {
+      "email": "emiliano@java.com",
+      "contrasenia": "123456",
+      "tipo": "agente_de_ventas",
+      "listaVuelos": [
+        3
+      ]
+    },
+    {
+      "email": "facundo@java.com",
+      "contrasenia": "123456",
+      "tipo": "pasajero",
+      "listaVuelos": [
+        2
+      ]
+    },
+    {
+      "email": "marcos@java.com",
+      "contrasenia": "123456",
+      "tipo": "administrador",
+      "listaVuelos": []
+    },
+    {
+      "email": "messi@java.com",
+      "contrasenia": "123456",
+      "tipo": "pasajero",
+      "listaVuelos": [
+        1,
+        3
+      ]
+    }
+  ]
+}
