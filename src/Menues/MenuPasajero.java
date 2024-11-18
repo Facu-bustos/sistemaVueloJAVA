@@ -23,6 +23,8 @@ public class MenuPasajero {
 
         List<TicketsDeReserva> tikectsDeReserva = new ArrayList<>();
 
+
+
         int opcion;
         int opcionCase5;
 
@@ -32,8 +34,9 @@ public class MenuPasajero {
             System.out.println("2. Realizar una reserva");
             System.out.println("3. Ver mis reservas");
             System.out.println("4. Cancelar una reserva");
-            System.out.println("5. Ver Mi Perfil");
-            System.out.println("6. Volver al menú principal");
+
+            System.out.println("6. Ver Mi Perfil");
+            System.out.println("7. Volver al menú principal");
             System.out.print("Seleccione una opción: ");
 
             opcion = scanner.nextInt();
@@ -58,9 +61,8 @@ public class MenuPasajero {
                 case 5:
 
                     break;
+                case 6:
 
-
-                case 5:
                     do {
                         System.out.println("=== Menu Mi Perfil ===");
                         System.out.println("1. Ver informacion personal");
@@ -79,7 +81,7 @@ public class MenuPasajero {
                                 System.out.println("Modificando informacion de seguridad...");
                         }
                     } while (opcionCase5 != 3);
-                case 6:
+                case 7:
                     System.out.println("Volviendo al menú principal...");
                     break;
                 default:

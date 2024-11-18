@@ -1,33 +1,43 @@
 package Clases;
 import Enumeradores.TipoEstadoCheckIn;
-import Enumeradores.TipoPasajero;
-import Excepciones.ReadFail;
+import GestionDeMenues.GestionPasajero;
+import Menues.MenuPasajero;
 import org.json.JSONException;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.Scanner;
-
-import GestionJSON.*;
-
-import static GestionJSON.GestionJSON.createJSON;
 
 public class Pasajero extends Usuario {
 
     //ATRIBUTOS
     private String numPasaporte;
-    private TipoPasajero tipoPasajero;
     TipoEstadoCheckIn estadoCheckIN ;
+    List<TicketsDeReserva>reservasPasajero;
 
-    public Pasajero(String email, String contrasenia, String numPasaporte, TipoPasajero tipoPasajero, TipoEstadoCheckIn estadoCheckIN) throws JSONException {
+    public Pasajero(String email, String contrasenia, String numPasaporte, TipoEstadoCheckIn estadoCheckIN, List<TicketsDeReserva> reservasPasajero) throws JSONException {
         super(email, contrasenia);
         this.numPasaporte = numPasaporte;
-        this.tipoPasajero = tipoPasajero;
         this.estadoCheckIN = estadoCheckIN;
+        this.reservasPasajero = new ArrayList<>();
     }
 
-    public Pasajero(String numPasaporte, TipoPasajero tipoPasajero, TipoEstadoCheckIn estadoCheckIN) {
+    public Pasajero()
+    {
+
+    }
+
+    public List<TicketsDeReserva> getReservasPasajero() {
+        return reservasPasajero;
+    }
+
+    public void setReservasPasajero(List<TicketsDeReserva> reservasPasajero) {
+        this.reservasPasajero = reservasPasajero;
+    }
+
+    public Pasajero(String numPasaporte, TipoEstadoCheckIn estadoCheckIN) {
         this.numPasaporte = numPasaporte;
-        this.tipoPasajero = tipoPasajero;
+
         this.estadoCheckIN = TipoEstadoCheckIn.PENDIENTE;
     }
 
@@ -39,13 +49,6 @@ public class Pasajero extends Usuario {
         this.numPasaporte = numPasaporte;
     }
 
-    public TipoPasajero getTipoPasajero() {
-        return tipoPasajero;
-    }
-
-    public void setTipoPasajero(TipoPasajero tipoPasajero) {
-        this.tipoPasajero = tipoPasajero;
-    }
 
     public TipoEstadoCheckIn getEstadoCheckIN() {
         return estadoCheckIN;
@@ -60,21 +63,12 @@ public class Pasajero extends Usuario {
         if (this == o) return true;
         if (!(o instanceof Pasajero pasajero)) return false;
         if (!super.equals(o)) return false;
-        return Objects.equals(getNumPasaporte(), pasajero.getNumPasaporte()) && getTipoPasajero() == pasajero.getTipoPasajero() && getEstadoCheckIN() == pasajero.getEstadoCheckIN();
+        return Objects.equals(getNumPasaporte(), pasajero.getNumPasaporte()) && getEstadoCheckIN() == pasajero.getEstadoCheckIN();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), getNumPasaporte(), getTipoPasajero(), getEstadoCheckIN());
-    }
-
-    @Override
-    public String toString() {
-        return "Pasajero{" +
-                "numPasaporte='" + numPasaporte + '\'' +
-                ", tipoPasajero=" + tipoPasajero +
-                ", estadoCheckIN=" + estadoCheckIN +
-                "} " + super.toString();
+        return Objects.hash(super.hashCode(), getNumPasaporte(), getEstadoCheckIN());
     }
 }
 

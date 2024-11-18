@@ -2,6 +2,7 @@ import GestionDeMenues.GestionAgenteDeVentas;
 import GestionDeMenues.GestionPasajero;
 import Menues.MenuAgenteVentas;
 import Menues.MenuPasajero;
+import SistemaDeLoggeo.SistemaLoggin;
 import org.json.JSONException;
 
 public class Main {
@@ -12,11 +13,11 @@ public class Main {
         //SI SOMOS AGENTE DE VENTA ENTRAR COMO AGENTE DE VENTA
         //SI SOMOS ADMINISTRADO ENTRAR COMO ADMINISTRADOR
 
+        SistemaLoggin sistemaLoggeo = new SistemaLoggin();
+        sistemaLoggeo.loggear();
 
-
-
-        MenuPasajero GP = new MenuPasajero();
-        GP.mostrarMenu();
+        /*MenuPasajero GP = new MenuPasajero();
+        GP.mostrarMenu();*
 
        /* MenuAgenteVentas GADV = new MenuAgenteVentas();
         GADV.mostrarMenu();*/

@@ -1,35 +1,48 @@
 package Clases;
 
+import java.util.List;
 import java.util.Objects;
 
 public class TicketsDeReserva {
     //Atributos
+    //ATRIBUTOS
     private int IdReserva;
     private int idVuelo;
     private String origen;
     private String destino;
-    private double precio;
-    private String numeroVuelo;
-    private String aerolinea;
-    private String duracion;
     private String horaSalida;
     private String horaLlegada;
+    private String duracion;
+    private double precio;
+    private int cantidadDisponible;
+    private String aerolinea;
+    private String clase;
+    private String numeroVuelo;
+    List<Escala> escalas;
+    private String tipoVuelo;
+    private String estadoVuelo;
 
-    public TicketsDeReserva(int idReserva, int idVuelo, String origen, String destino, double precio, String numeroVuelo, String aerolinea, String duracion, String horaSalida, String horaLlegada) {
+    public TicketsDeReserva ()
+    {
+
+    }
+
+    public TicketsDeReserva(int idReserva, int idVuelo, String origen, String destino, String horaSalida, String horaLlegada, String duracion, double precio, int cantidadDisponible, String aerolinea, String clase, String numeroVuelo, List<Escala> escalas, String tipoVuelo, String estadoVuelo) {
         IdReserva = idReserva;
         this.idVuelo = idVuelo;
         this.origen = origen;
         this.destino = destino;
-        this.precio = precio;
-        this.numeroVuelo = numeroVuelo;
-        this.aerolinea = aerolinea;
-        this.duracion = duracion;
         this.horaSalida = horaSalida;
         this.horaLlegada = horaLlegada;
-    }
-
-    public TicketsDeReserva() {
-
+        this.duracion = duracion;
+        this.precio = precio;
+        this.cantidadDisponible = cantidadDisponible;
+        this.aerolinea = aerolinea;
+        this.clase = clase;
+        this.numeroVuelo = numeroVuelo;
+        this.escalas = escalas;
+        this.tipoVuelo = tipoVuelo;
+        this.estadoVuelo = estadoVuelo;
     }
 
     public int getIdReserva() {
@@ -64,38 +77,6 @@ public class TicketsDeReserva {
         this.destino = destino;
     }
 
-    public double getPrecio() {
-        return precio;
-    }
-
-    public void setPrecio(double precio) {
-        this.precio = precio;
-    }
-
-    public String getNumeroVuelo() {
-        return numeroVuelo;
-    }
-
-    public void setNumeroVuelo(String numeroVuelo) {
-        this.numeroVuelo = numeroVuelo;
-    }
-
-    public String getAerolinea() {
-        return aerolinea;
-    }
-
-    public void setAerolinea(String aerolinea) {
-        this.aerolinea = aerolinea;
-    }
-
-    public String getDuracion() {
-        return duracion;
-    }
-
-    public void setDuracion(String duracion) {
-        this.duracion = duracion;
-    }
-
     public String getHoraSalida() {
         return horaSalida;
     }
@@ -112,31 +93,108 @@ public class TicketsDeReserva {
         this.horaLlegada = horaLlegada;
     }
 
-    @Override
-    public String toString() {
-        return "TicketsDeReserva{" +
-                "IdReserva=" + IdReserva +
-                ", idVuelo=" + idVuelo +
-                ", origen='" + origen + '\'' +
-                ", destino='" + destino + '\'' +
-                ", precio=" + precio +
-                ", numeroVuelo='" + numeroVuelo + '\'' +
-                ", aerolinea='" + aerolinea + '\'' +
-                ", duracion='" + duracion + '\'' +
-                ", horaSalida='" + horaSalida + '\'' +
-                ", horaLlegada='" + horaLlegada + '\'' +
-                '}';
+    public String getDuracion() {
+        return duracion;
+    }
+
+    public void setDuracion(String duracion) {
+        this.duracion = duracion;
+    }
+
+    public double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
+
+    public int getCantidadDisponible() {
+        return cantidadDisponible;
+    }
+
+    public void setCantidadDisponible(int cantidadDisponible) {
+        this.cantidadDisponible = cantidadDisponible;
+    }
+
+    public String getAerolinea() {
+        return aerolinea;
+    }
+
+    public void setAerolinea(String aerolinea) {
+        this.aerolinea = aerolinea;
+    }
+
+    public String getClase() {
+        return clase;
+    }
+
+    public void setClase(String clase) {
+        this.clase = clase;
+    }
+
+    public String getNumeroVuelo() {
+        return numeroVuelo;
+    }
+
+    public void setNumeroVuelo(String numeroVuelo) {
+        this.numeroVuelo = numeroVuelo;
+    }
+
+    public List<Escala> getEscalas() {
+        return escalas;
+    }
+
+    public void setEscalas(List<Escala> escalas) {
+        this.escalas = escalas;
+    }
+
+    public String getTipoVuelo() {
+        return tipoVuelo;
+    }
+
+    public void setTipoVuelo(String tipoVuelo) {
+        this.tipoVuelo = tipoVuelo;
+    }
+
+    public String getEstadoVuelo() {
+        return estadoVuelo;
+    }
+
+    public void setEstadoVuelo(String estadoVuelo) {
+        this.estadoVuelo = estadoVuelo;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof TicketsDeReserva that)) return false;
-        return IdReserva == that.IdReserva && idVuelo == that.idVuelo && Double.compare(precio, that.precio) == 0 && Objects.equals(origen, that.origen) && Objects.equals(destino, that.destino) && Objects.equals(numeroVuelo, that.numeroVuelo) && Objects.equals(aerolinea, that.aerolinea) && Objects.equals(duracion, that.duracion) && Objects.equals(horaSalida, that.horaSalida) && Objects.equals(horaLlegada, that.horaLlegada);
+        return getIdVuelo() == that.getIdVuelo() && Double.compare(getPrecio(), that.getPrecio()) == 0 && getCantidadDisponible() == that.getCantidadDisponible() && Objects.equals(getOrigen(), that.getOrigen()) && Objects.equals(getDestino(), that.getDestino()) && Objects.equals(getHoraSalida(), that.getHoraSalida()) && Objects.equals(getHoraLlegada(), that.getHoraLlegada()) && Objects.equals(getDuracion(), that.getDuracion()) && Objects.equals(getAerolinea(), that.getAerolinea()) && Objects.equals(getClase(), that.getClase()) && Objects.equals(getNumeroVuelo(), that.getNumeroVuelo()) && Objects.equals(getEscalas(), that.getEscalas()) && Objects.equals(getTipoVuelo(), that.getTipoVuelo()) && Objects.equals(getEstadoVuelo(), that.getEstadoVuelo());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(IdReserva, idVuelo, origen, destino, precio, numeroVuelo, aerolinea, duracion, horaSalida, horaLlegada);
+        return Objects.hash(getIdVuelo(), getOrigen(), getDestino(), getHoraSalida(), getHoraLlegada(), getDuracion(), getPrecio(), getCantidadDisponible(), getAerolinea(), getClase(), getNumeroVuelo(), getEscalas(), getTipoVuelo(), getEstadoVuelo());
     }
+
+    @Override
+    public String toString() {
+        return "TicketsDeReserva{" +
+                "idVuelo=" + idVuelo +
+                ", origen='" + origen + '\'' +
+                ", destino='" + destino + '\'' +
+                ", horaSalida='" + horaSalida + '\'' +
+                ", horaLlegada='" + horaLlegada + '\'' +
+                ", duracion='" + duracion + '\'' +
+                ", precio=" + precio +
+                ", cantidadDisponible=" + cantidadDisponible +
+                ", aerolinea='" + aerolinea + '\'' +
+                ", clase='" + clase + '\'' +
+                ", numeroVuelo='" + numeroVuelo + '\'' +
+                ", escalas=" + escalas +
+                ", tipoVuelo='" + tipoVuelo + '\'' +
+                ", estadoVuelo='" + estadoVuelo + '\'' +
+                '}';
+    }
+
 }

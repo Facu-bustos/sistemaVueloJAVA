@@ -15,62 +15,45 @@ public abstract class Usuario extends Persona{
 
     private String email;
     private String contrasenia;
-    private List<Vuelo> listaVuelos;
+
 
     // CONSTRUCTOR
-
-
     public Usuario(String email, String contrasenia) throws JSONException {
         this.email = email;
         this.contrasenia = contrasenia;
-        this.listaVuelos = GestionJSON.mapeoVuelo();
     }
 
     public Usuario() {
 
     }
 
-    // GETTER
-
     public String getEmail() {
         return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getContrasenia() {
         return contrasenia;
     }
 
-    public List<Vuelo> getListaVuelos() {
-        return listaVuelos;
-    }
-
-    // SETTER
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public void setContrasenia(String contrasenia) {
         this.contrasenia = contrasenia;
     }
-
-    public void setListaVuelos(List<Vuelo> listaVuelos) {
-        this.listaVuelos = listaVuelos;
-    }
-
-    // METODOS
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Usuario usuario)) return false;
         if (!super.equals(o)) return false;
-        return Objects.equals(email, usuario.email) && Objects.equals(contrasenia, usuario.contrasenia) && Objects.equals(listaVuelos, usuario.listaVuelos);
+        return Objects.equals(getEmail(), usuario.getEmail()) && Objects.equals(getContrasenia(), usuario.getContrasenia());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), email, contrasenia, listaVuelos);
+        return Objects.hash(super.hashCode(), getEmail(), getContrasenia());
     }
 
     @Override
@@ -78,15 +61,8 @@ public abstract class Usuario extends Persona{
         return "Usuario{" +
                 "email='" + email + '\'' +
                 ", contrasenia='" + contrasenia + '\'' +
-                ", listaVuelos=" + listaVuelos +
                 "} " + super.toString();
     }
-
     // VALIDAR CONTRASENIA
 
-    public void validarUsuarioOContrasenia(String emailIngresado, String contraseniaIngresada) throws ContraseniaIncorrectaExcepcion {
-        if (!this.contrasenia.equals(contraseniaIngresada) || !this.email.equals(emailIngresado)){
-            throw new ContraseniaIncorrectaExcepcion("Usuario o contrasenia incorrecto/a");
-        }
-    }
 }

@@ -72,7 +72,7 @@ public class GestionPasajero {
             if (!entrada.isEmpty() && entrada.matches("[a-zA-Z\\s]+")) {
                 return entrada;
             } else {
-                System.out.println("Entrada inválida. Por favor, ingrese un destino válido (solo letras):");
+                System.out.println("Entrada inválida, ingrese un destino válido (solo letras):");
             }
         }
     }

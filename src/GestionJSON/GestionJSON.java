@@ -1,6 +1,7 @@
 package GestionJSON;
 
 import Clases.Escala;
+import Clases.TicketsDeReserva;
 import Clases.Vuelo;
 import JSONutiles.JSONUtiles;
 import org.json.JSONArray;
@@ -53,10 +54,10 @@ public class GestionJSON {
         return listaDeVuelos;
     }
 
-    public static void createJSON(int idVuelo, List<Vuelo> listaVuelo) throws JSONException {
+    public static void createJSON(int idVuelo, List<TicketsDeReserva> listaVuelo) throws JSONException {
         JSONObject jVuelo = new JSONObject();
         JSONArray jescalas = new JSONArray();
-        for (Vuelo v : listaVuelo) {
+        for (TicketsDeReserva v : listaVuelo) {
 
             if (idVuelo == v.getIdVuelo()) {
                 jVuelo.put("id_vuelo", v.getIdVuelo());
