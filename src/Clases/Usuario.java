@@ -1,6 +1,8 @@
 package Clases;
 
 import Excepciones.ContraseniaIncorrectaExcepcion;
+import GestionJSON.GestionJSON;
+import org.json.JSONException;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -18,9 +20,10 @@ public abstract class Usuario extends Persona{
     // CONSTRUCTOR
 
 
-    public Usuario(String email, String contrasenia) {
+    public Usuario(String email, String contrasenia) throws JSONException {
         this.email = email;
         this.contrasenia = contrasenia;
+        this.listaVuelos = GestionJSON.mapeoVuelo();
     }
 
     public Usuario() {

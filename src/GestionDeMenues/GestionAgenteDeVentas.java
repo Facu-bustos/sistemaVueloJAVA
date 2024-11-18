@@ -1,135 +1,113 @@
 package GestionDeMenues;
+import java.util.Random;
 
-import JSONutiles.JSONUtiles;
-import Menues.MenuAgenteVentas;
-import org.json.JSONArray;
+import Clases.Escala;
+import Clases.TicketsDeReserva;
+import Clases.Vuelo;
+import GestionJSON.GestionJSON;
 import org.json.JSONException;
-import org.json.JSONObject;
 
-import java.awt.*;
-import java.util.Scanner;
+import java.util.*;
 
 public class GestionAgenteDeVentas {
 
-    private Scanner scanner = new Scanner(System.in);
+    public GestionAgenteDeVentas()
+    {
+    }
 
-    // BUSCADOR DE VUELO POR DESTINO Y ORIGEN
 
-    public static void buscarVueloPorDestinoUOrigen(Scanner scanner) throws JSONException {
-        JSONArray vuelosArray = new JSONArray(JSONUtiles.leer("vuelos.json"));
-
-        System.out.print("Ingrese el origen o destino del vuelo: ");
-        String criterio = scanner.nextLine().toLowerCase();
-
-        System.out.println("=== Resultados de Búsqueda ===");
-        boolean encontrado = false;
-
-        for (int i = 0; i < vuelosArray.length(); i++) {
-            JSONObject vuelo = vuelosArray.getJSONObject(i);
-            String origen = vuelo.getString("origen").toLowerCase();
-            String destino = vuelo.getString("destino").toLowerCase();
-
-            if (origen.contains(criterio) || destino.contains(criterio)) {
-                GestionVuelo.mostrarInformacionVuelo(vuelo);
-                encontrado = true;
-            }
-        }
-
-        if (!encontrado) {
-            System.out.println("No se encontraron vuelos que coincidan con el criterio.");
+    public void lecturaDeArraylistaVuelos(List<Vuelo>listaVuelos) throws JSONException {
+        for(Vuelo v: listaVuelos)
+        {
+            System.out.println(v);
         }
     }
 
-    // CANCELACION DE RESERVA
+    public List<TicketsDeReserva>comprarVuelo(List<Vuelo>listaVuelos)
+    {
+        Scanner scanner = new Scanner(System.in);
+        List<TicketsDeReserva> listaDeReserva = new ArrayList<>();
+        boolean seguirComprando = true;
+        while (seguirComprando) {
+            System.out.println("Ingrese el destino que desea reservar:");
+            String destinoSeleccionado = obtenerEntradaValida(scanner);
 
-    public void cancelarReserva(Scanner scanner) throws JSONException {
-        // Leer el archivo JSON de reservas y vuelos
-        JSONArray reservasArray = new JSONArray(JSONUtiles.leer("reservas.json"));
-        JSONArray vuelosArray = new JSONArray(JSONUtiles.leer("vuelos.json"));
+            boolean vueloEncontrado = false;
+            for (Vuelo v : listaVuelos) {
+                if (v.getDestino().equalsIgnoreCase(destinoSeleccionado)) {
+                    vueloEncontrado = true;
+                    System.out.println("Usted seleccionó el destino: " + v.getDestino());
+                    Random randomID = new Random();
+                    int idRandomVuelo = randomID.nextInt(100);
+                    TicketsDeReserva ticketReserva = new TicketsDeReserva();
+                    ticketReserva.setIdReserva(idRandomVuelo);
+                    ticketReserva.setIdVuelo(v.getIdVuelo());
+                    ticketReserva.setOrigen(v.getOrigen());
+                    ticketReserva.setDestino(v.getDestino());
+                    ticketReserva.setPrecio(v.getPrecio());
+                    ticketReserva.setNumeroVuelo(v.getNumeroVuelo());
+                    ticketReserva.setAerolinea(v.getAerolinea());
+                    ticketReserva.setDuracion(v.getDuracion());
+                    ticketReserva.setHoraLlegada(v.getHoraLlegada());
+                    listaDeReserva.add(ticketReserva);
+                    break;
+                }
+            }
 
-        System.out.print("Ingrese el ID de la reserva a cancelar: ");
+            if (!vueloEncontrado) {
+                System.out.println("No se encontró ningún vuelo con el destino ingresado. Por favor, intente nuevamente.");
+            }
+
+            System.out.println("¿Desea adquirir otro destino? (si/no):");
+            String respuesta = scanner.nextLine().trim();
+            seguirComprando = respuesta.equalsIgnoreCase("si");
+        }
+
+        return listaDeReserva;
+    }
+
+    private String obtenerEntradaValida(Scanner scanner) {
+        String entrada;
+        while (true) {
+            entrada = scanner.nextLine().trim();
+            if (!entrada.isEmpty() && entrada.matches("[a-zA-Z\\s]+")) {
+                return entrada;
+            } else {
+                System.out.println("Entrada inválida. Por favor, ingrese un destino válido (solo letras):");
+            }
+        }
+    }
+
+
+    public void eliminarReserva(List<TicketsDeReserva>Reservas)
+    {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Ingrese el numero de Reserva que desea Eliminar");
         int idReserva = scanner.nextInt();
-        scanner.nextLine(); // Limpiar buffer
+        TicketsDeReserva eliminar = null;
 
-        JSONObject reservaCancelada = null;
-
-        // Buscar y eliminar la reserva
-        for (int i = 0; i < reservasArray.length(); i++) {
-            JSONObject reserva = reservasArray.getJSONObject(i);
-            if (reserva.getInt("idReserva") == idReserva) {
-                reservaCancelada = reserva;
-                reservasArray.remove(i); // Eliminar la reserva del JSON
-                break;
+        for(TicketsDeReserva TR: Reservas)
+        {
+            if(TR.getIdReserva()==idReserva)
+            {
+                eliminar=TR;
             }
         }
 
-        if (reservaCancelada == null) {
-            System.out.println("Reserva no encontrada.");
-            return;
+        if(eliminar!=null)
+        {
+            Reservas.remove(eliminar);
+            System.out.println("VIAJE CANCELADO");
         }
-
-        // Actualizar asientos disponibles en el vuelo correspondiente
-        int idVuelo = reservaCancelada.getJSONObject("vuelo").getInt("idVuelo");
-        for (int i = 0; i < vuelosArray.length(); i++) {
-            JSONObject vuelo = vuelosArray.getJSONObject(i);
-            if (vuelo.getInt("idVuelo") == idVuelo) {
-                int asientosDevueltos = reservaCancelada.getInt("cantidadAsientos");
-                vuelo.put("cantidadDisponible", vuelo.getInt("cantidadDisponible") + asientosDevueltos);
-                break;
-            }
-        }
-        // Guardar los cambios en los archivos JSON
-        JSONUtiles.grabarArray(reservasArray); // Actualizar reservas.json
-        JSONUtiles.grabarArray(vuelosArray);  // Actualizar vuelos.json
-
-        System.out.println("Reserva cancelada exitosamente.");
     }
 
-    // LISTA DE RESERVAS
-
-    public void verReservas() throws JSONException {
-        JSONArray reservasArray = new JSONArray(JSONUtiles.leer("reservas.json"));
-
-        if (reservasArray.length() == 0) {
-            System.out.println("No hay reservas registradas.");
-            return;
+    public void mostrarReservas(List<TicketsDeReserva> reservas)
+    {
+        for(TicketsDeReserva tr: reservas)
+        {
+            System.out.println(tr.toString());
         }
-
-        System.out.println("=== Listado de Reservas ===");
-        for (int i = 0; i < reservasArray.length(); i++) {
-            JSONObject reserva = reservasArray.getJSONObject(i);
-
-            int idReserva = reserva.getInt("idReserva");
-            JSONObject pasajero = reserva.getJSONObject("pasajero");
-            String nombrePasajero = pasajero.getString("nombre");
-            JSONObject vuelo = reserva.getJSONObject("vuelo");
-            String origen = vuelo.getString("origen");
-            String destino = vuelo.getString("destino");
-            String fechaReserva = reserva.getString("fechaReserva");
-            String estadoReserva = reserva.getString("estadoReserva");
-            int cantidadAsientos = reserva.getInt("cantidadAsientos");
-            double precioTotal = reserva.getDouble("precioTotal");
-
-            System.out.println("ID Reserva: " + idReserva);
-            System.out.println("Pasajero: " + nombrePasajero);
-            System.out.println("Origen: " + origen + " | Destino: " + destino);
-            System.out.println("Fecha de Reserva: " + fechaReserva);
-            System.out.println("Estado: " + estadoReserva);
-            System.out.println("Cantidad de Asientos: " + cantidadAsientos);
-            System.out.println("Precio Total: $" + precioTotal);
-            System.out.println("----------------------------");
-        }
-
-    }
-
-    // LLAMADO A AGENTE DE VENTAS PARA MOSTRAR MENU
-
-    public void llamadoAgenteVentas() throws JSONException {
-        MenuAgenteVentas MAdV = new MenuAgenteVentas();
-        MAdV.mostrarMenu();
     }
 
 }
-
-
 

@@ -1,13 +1,10 @@
 package Clases;
 
-import Enumeradores.TipoTripulante;
-
-
 
 public class Tripulante extends Persona {
 
     //ATRIBUTOS
-
+/*
     private TipoTripulante tipoTripulante;
     private String cargo;
     private float sueldo;
@@ -73,5 +70,5 @@ public class Tripulante extends Persona {
                 ", sueldo=" + sueldo +
                 ", legajo='" + legajo  + super.toString() +
                 '}';
-    }
+    }*/
 }

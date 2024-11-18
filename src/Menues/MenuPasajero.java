@@ -17,11 +17,11 @@ import GestionDeMenues.*;
 public class MenuPasajero {
 
     public void mostrarMenu() throws JSONException {
-
-        List<Vuelo> listaVuelo = new ArrayList<>();
-        listaVuelo = GestionJSON.mapeoVuelo();
-        GestionPasajero gestorP = new GestionPasajero();
         Scanner scanner = new Scanner(System.in);
+        GestionPasajero GP = new GestionPasajero();
+        List<Vuelo>listaVuelos=GestionJSON.mapeoVuelo();
+
+        List<TicketsDeReserva> tikectsDeReserva = new ArrayList<>();
 
         int opcion;
         int opcionCase5;
@@ -30,43 +30,37 @@ public class MenuPasajero {
             System.out.println("=== Menú Pasajero ===");
             System.out.println("1. Ver vuelos disponibles");
             System.out.println("2. Realizar una reserva");
-            System.out.println("3. Realizar Check-In");
-            System.out.println("4. Ver estado Check-In");
-            System.out.println("5. Cancelar una reserva");
-            System.out.println("6. Ver mis reservas");
-            System.out.println("7. Ver mi historial de vuelos");
-            System.out.println("8. Ver Mi Perfil");
-            System.out.println("9. Volver al menú principal");
+            System.out.println("3. Ver mis reservas");
+            System.out.println("4. Cancelar una reserva");
+            System.out.println("5. Ver Mi Perfil");
+            System.out.println("6. Volver al menú principal");
             System.out.print("Seleccione una opción: ");
 
             opcion = scanner.nextInt();
-            scanner.nextLine(); // Limpiar buffer
+            scanner.nextLine();
 
             switch (opcion) {
                 case 1:
                     System.out.println("Mostrando lista de vuelos...");
+                    GP.lecturaDeArraylistaVuelos(listaVuelos);
                     break;
                 case 2:
                     System.out.println("Realizando reserva...");
+                    List<TicketsDeReserva>reservas= GP.comprarVuelo(listaVuelos);
+                    tikectsDeReserva.addAll(reservas);
                     break;
                 case 3:
-                    System.out.println("Realizando Check-In...");
+                    GP.mostrarReservas(tikectsDeReserva);
                     break;
                 case 4:
-                    System.out.println("Mostrando estado Check-In...");
+                    GP.eliminarReserva(tikectsDeReserva);
                     break;
                 case 5:
-                    System.out.println("Cancelando una reserva...");
-                    // Lógica para cancelar una reserva
+
                     break;
-                case 6:
-                    System.out.println("Mostrando mis reservas...");
-                    // Lógica para ver reservas del pasajero
-                    break;
-                case 7:
-                    System.out.println("Mostrando historial de vuelos...");
-                    break;
-                case 8:
+
+
+                case 5:
                     do {
                         System.out.println("=== Menu Mi Perfil ===");
                         System.out.println("1. Ver informacion personal");
@@ -85,29 +79,15 @@ public class MenuPasajero {
                                 System.out.println("Modificando informacion de seguridad...");
                         }
                     } while (opcionCase5 != 3);
-                case 9:
+                case 6:
                     System.out.println("Volviendo al menú principal...");
                     break;
                 default:
                     System.out.println("Opción no válida. Intente nuevamente.");
             }
-        } while (opcion != 9);
+        } while (opcion != 6);
+        scanner.close();
     }
-        /*public static void verVuelosDisponibles() throws JSONException {
-            JSONArray vuelosArray = new JSONArray(JSONUtiles.leer("vuelos.json"));
 
-            if (vuelosArray.length() == 0) {
-                System.out.println("No hay vuelos disponibles en este momento.");
-                return;
-            }
-
-            System.out.println("=== Vuelos Disponibles ===");
-            for (int i = 0; i < vuelosArray.length(); i++) {
-                JSONObject vuelo = vuelosArray.getJSONObject(i);
-                if (vuelo.getInt("cantidadDisponible") > 0) { // Solo mostrar vuelos con asientos disponibles
-                    mostrarInformacionVuelo(vuelo);
-                }
-            }
-        }*/
 }
 

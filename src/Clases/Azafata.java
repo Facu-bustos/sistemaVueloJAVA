@@ -1,9 +1,7 @@
 package Clases;
 
-import Enumeradores.TipoTripulante;
-
 public class Azafata extends Tripulante{
-
+/*
     //ATRIBUTOS
 
     private int cantIdiomas;
@@ -38,5 +36,5 @@ public class Azafata extends Tripulante{
         return "Azafata{" +
                 "cantIdiomas=" + cantIdiomas + super.toString() +
                 '}';
-    }
+    }*/
 }

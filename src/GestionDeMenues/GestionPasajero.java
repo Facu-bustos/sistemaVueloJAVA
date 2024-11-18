@@ -1,99 +1,117 @@
 package GestionDeMenues;
 
 import Clases.Escala;
+import Clases.TicketsDeReserva;
 import Clases.Vuelo;
 import Menues.MenuAgenteVentas;
 import Menues.MenuPasajero;
 import org.json.JSONException;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 
 import static GestionJSON.GestionJSON.createJSON;
 
 public class GestionPasajero {
 
-    private Scanner scanner = new Scanner(System.in);
 
-
-
-    public int compraDeVuelo(List<Vuelo> listaVuelo) throws JSONException {
-
-        System.out.println("Elija el ID del vuelo a comprar:");
-        int idVuelo = scanner.nextInt();
-        scanner.nextLine();
-        Integer idBusqueda=null;
-        boolean encontrado = false;
-        // buscamos el vuelo en la lista de vuelos , si hay coincidencia accedemos a persistir
-        for (Vuelo v : listaVuelo) {
-            if (v.getIdVuelo() == idVuelo) {
-                System.out.println("Vuelo encontrado:");
-                createJSON(idVuelo,listaVuelo);
-                System.out.println("Vuelo comprado:");
-                datosDelViajeAdquirido(idVuelo,listaVuelo);
-                encontrado = true;
-                idBusqueda=idVuelo;
-                break;
-            } else {
-                System.out.println("Error: No existe un vuelo con el ID " + idVuelo + ".");
-            }
-        }
-        return idBusqueda;
-    }
-
-    public void cancelacionDeVuelo()
-    {
-
-    }
-
-    public void mostrarDatosPersonales()
-    {
-
-    }
-
-    public void modifcarDatosPersonales()
-    {
-
-    }
-
-
-
-    public static void datosDelViajeAdquirido(Integer idVuelo, List<Vuelo>listaVuelo)
-    {
-        if(idVuelo!=null)
+    public void lecturaDeArraylistaVuelos(List<Vuelo>listaVuelos) throws JSONException {
+        for(Vuelo v: listaVuelos)
         {
+            System.out.println(v);
+        }
+    }
 
-            for(Vuelo v: listaVuelo)
-            {
-                if(v.getIdVuelo()==idVuelo)
-                {
-                    System.out.println("ID VUELO: " + v.getIdVuelo());
-                    System.out.println("NUMERO DE VUELO: " + v.getNumeroVuelo());
-                    System.out.println("ORIGEN: " + v.getOrigen());
-                    System.out.println("DESTINO: " + v.getDestino());
-                    System.out.println("ESTADO DE VUELO" + v.getEstadoVuelo());
-                    System.out.println("AEROLINEA: " + v.getAerolinea());
-                    System.out.println("CLASE: " + v.getClase());
-                    System.out.println("DURACION: "+ v.getDuracion());
-                    for(Escala e: v.getEscalas())
-                    {
-                        System.out.println("Aeropuerto " + e.getAeropueto());
-                        System.out.println("HORA LLEGADA: " + e.getHoraSalida());
-                    }
-                    System.out.println("HORA DE SALIDA : " + v.getHoraSalida());
-                    System.out.println("HORA DE LLEGADA: " + v.getHoraLlegada());
-                    System.out.println("PRECIO: " + v.getPrecio());
-                    System.out.println("TIPO DE VUELO: " + v.getTipoVuelo());
+    public List<TicketsDeReserva>comprarVuelo(List<Vuelo>listaVuelos)
+    {
+        Scanner scanner = new Scanner(System.in);
+        List<TicketsDeReserva> listaDeReserva = new ArrayList<>();
+        boolean seguirComprando = true;
+        while (seguirComprando) {
+            System.out.println("Ingrese el destino que desea reservar:");
+            String destinoSeleccionado = obtenerEntradaValida(scanner);
+
+            boolean vueloEncontrado = false;
+            for (Vuelo v : listaVuelos) {
+                if (v.getDestino().equalsIgnoreCase(destinoSeleccionado)) {
+                    vueloEncontrado = true;
+                    System.out.println("Usted seleccionó el destino: " + v.getDestino());
+                    Random randomID = new Random();
+                    int idRandomVuelo = randomID.nextInt(100);
+                    TicketsDeReserva ticketReserva = new TicketsDeReserva();
+                    ticketReserva.setIdReserva(idRandomVuelo);
+                    ticketReserva.setIdVuelo(v.getIdVuelo());
+                    ticketReserva.setOrigen(v.getOrigen());
+                    ticketReserva.setDestino(v.getDestino());
+                    ticketReserva.setPrecio(v.getPrecio());
+                    ticketReserva.setNumeroVuelo(v.getNumeroVuelo());
+                    ticketReserva.setAerolinea(v.getAerolinea());
+                    ticketReserva.setDuracion(v.getDuracion());
+                    ticketReserva.setHoraLlegada(v.getHoraLlegada());
+                    listaDeReserva.add(ticketReserva);
+                    break;
                 }
             }
+            if (!vueloEncontrado) {
+                System.out.println("No se encontró ningún vuelo con el destino ingresado. Por favor, intente nuevamente.");
+            }
+
+            System.out.println("¿Desea adquirir otro destino? (si/no):");
+            String respuesta = scanner.nextLine().trim();
+            seguirComprando = respuesta.equalsIgnoreCase("si");
+        }
+        return listaDeReserva;
+    }
+
+    private String obtenerEntradaValida(Scanner scanner) {
+        String entrada;
+        while (true) {
+            entrada = scanner.nextLine().trim();
+            if (!entrada.isEmpty() && entrada.matches("[a-zA-Z\\s]+")) {
+                return entrada;
+            } else {
+                System.out.println("Entrada inválida. Por favor, ingrese un destino válido (solo letras):");
+            }
         }
     }
 
-    // LLAMADO A PASAJERO PARA MOSTRAR MENU
 
-    public void llamadoPasajero() throws JSONException {
-        MenuPasajero MP = new MenuPasajero();
-        MP.mostrarMenu();
+    public void eliminarReserva(List<TicketsDeReserva>Reservas)
+    {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Ingrese el numero de Reserva que desea Eliminar");
+        int idReserva = scanner.nextInt();
+        TicketsDeReserva eliminar = null;
+
+        for(TicketsDeReserva TR: Reservas)
+        {
+            if(TR.getIdReserva()==idReserva)
+            {
+                eliminar=TR;
+            }
+        }
+
+        if(eliminar!=null)
+        {
+            Reservas.remove(eliminar);
+            System.out.println("VIAJE CANCELADO");
+        }
     }
+
+    public void mostrarReservas(List<TicketsDeReserva> reservas)
+    {
+        for(TicketsDeReserva tr: reservas)
+        {
+            System.out.println(tr.toString());
+        }
+    }
+
+    public void checkIn()
+    {
+
+    }
+
 
 }

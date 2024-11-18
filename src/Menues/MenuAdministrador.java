@@ -17,7 +17,6 @@ public class MenuAdministrador {
 
         GestionAdministrador gestorAdmin = new GestionAdministrador();
         Scanner scanner = new Scanner(System.in);
-
         int opcion;
 
         do {

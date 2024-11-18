@@ -1,9 +1,7 @@
 package Clases;
 
-import Enumeradores.TipoTripulante;
-
 public class Piloto extends Tripulante{
-
+/*
     //ATRIBUTOS
 
     private int horasVuelosP;
@@ -49,5 +47,5 @@ public class Piloto extends Tripulante{
                 "horasVuelosP=" + horasVuelosP +
                 ", licenciaVuelosP='" + licenciaVuelosP  + super.toString() +
                 '}';
-    }
+    }*/
 }

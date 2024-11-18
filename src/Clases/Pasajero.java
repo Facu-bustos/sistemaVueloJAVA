@@ -16,17 +16,19 @@ public class Pasajero extends Usuario {
     //ATRIBUTOS
     private String numPasaporte;
     private TipoPasajero tipoPasajero;
-    private TipoEstadoCheckIn estadoCheckIn;
-    Scanner scanner;
+    TipoEstadoCheckIn estadoCheckIN ;
 
-    //CONSTRUCTOR
-
-    public Pasajero(String email, String contrasenia) {
+    public Pasajero(String email, String contrasenia, String numPasaporte, TipoPasajero tipoPasajero, TipoEstadoCheckIn estadoCheckIN) throws JSONException {
         super(email, contrasenia);
+        this.numPasaporte = numPasaporte;
+        this.tipoPasajero = tipoPasajero;
+        this.estadoCheckIN = estadoCheckIN;
     }
 
-    public Pasajero() {
-        super();
+    public Pasajero(String numPasaporte, TipoPasajero tipoPasajero, TipoEstadoCheckIn estadoCheckIN) {
+        this.numPasaporte = numPasaporte;
+        this.tipoPasajero = tipoPasajero;
+        this.estadoCheckIN = TipoEstadoCheckIn.PENDIENTE;
     }
 
     public String getNumPasaporte() {
@@ -45,20 +47,12 @@ public class Pasajero extends Usuario {
         this.tipoPasajero = tipoPasajero;
     }
 
-    public TipoEstadoCheckIn getEstadoCheckIn() {
-        return estadoCheckIn;
+    public TipoEstadoCheckIn getEstadoCheckIN() {
+        return estadoCheckIN;
     }
 
-    public void setEstadoCheckIn(TipoEstadoCheckIn estadoCheckIn) {
-        this.estadoCheckIn = estadoCheckIn;
-    }
-
-    public Scanner getScanner() {
-        return scanner;
-    }
-
-    public void setScanner(Scanner scanner) {
-        this.scanner = scanner;
+    public void setEstadoCheckIN(TipoEstadoCheckIn estadoCheckIN) {
+        this.estadoCheckIN = estadoCheckIN;
     }
 
     @Override
@@ -66,69 +60,22 @@ public class Pasajero extends Usuario {
         if (this == o) return true;
         if (!(o instanceof Pasajero pasajero)) return false;
         if (!super.equals(o)) return false;
-        return Objects.equals(numPasaporte, pasajero.numPasaporte) && tipoPasajero == pasajero.tipoPasajero && estadoCheckIn == pasajero.estadoCheckIn && Objects.equals(scanner, pasajero.scanner);
+        return Objects.equals(getNumPasaporte(), pasajero.getNumPasaporte()) && getTipoPasajero() == pasajero.getTipoPasajero() && getEstadoCheckIN() == pasajero.getEstadoCheckIN();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), numPasaporte, tipoPasajero, estadoCheckIn, scanner);
+        return Objects.hash(super.hashCode(), getNumPasaporte(), getTipoPasajero(), getEstadoCheckIN());
     }
-
-    public List<Vuelo> lecturaDeListaVuelo() throws JSONException
-    {
-        try {
-        List<Vuelo>listaVuelo=GestionJSON.mapeoVuelo();
-        System.out.print(listaVuelo);
-            return listaVuelo;
-        }catch (JSONException e)
-        {
-            throw new ReadFail("Lectura ERRONEA");
-        }
-    }
-
 
     @Override
     public String toString() {
         return "Pasajero{" +
                 "numPasaporte='" + numPasaporte + '\'' +
                 ", tipoPasajero=" + tipoPasajero +
-                ", estadoCheckIn=" + estadoCheckIn +
-                ", scanner=" + scanner +
+                ", estadoCheckIN=" + estadoCheckIN +
                 "} " + super.toString();
     }
-
-    /*public static Integer compraDeVuelo(List<Vuelo>listaVuelo) throws JSONException {
-
-        Scanner scanner1 = new Scanner(System.in);
-        System.out.println("Elija el ID del vuelo a comprar:");
-        String id = scanner1.nextLine();
-        Integer idBusqueda=null;
-        // Verificamos si la entrada es un número
-        if (!id.matches("\\d+")) {  // Verificamos que contenga solo dígitos
-            System.out.println("Error: Debe ingresar un número válido.");
-        } else {
-            int idVuelo = Integer.parseInt(id);  // Convertir a número
-            boolean encontrado = false;
-            // buscamos el vuelo en la lista de vuelos , si hay coincidencia accedemos a persistir
-            for (Vuelo v : listaVuelo) {
-                if (v.getIdVuelo() == idVuelo) {
-                    System.out.println("Vuelo encontrado:");
-                    createJSON(idVuelo,listaVuelo);
-                    System.out.println("Vuelo comprado:");
-                    datosDelViajeAdquirido(idVuelo,listaVuelo);
-                    encontrado = true;
-                    idBusqueda=idVuelo;
-                    break;
-                }
-
-            }
-            if (!encontrado) {
-                System.out.println("Error: No existe un vuelo con el ID " + idVuelo + ".");
-            }
-        }
-        return idBusqueda;
-    } */
-
 }
 
 
