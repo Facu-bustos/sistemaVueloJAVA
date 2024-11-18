@@ -70,6 +70,4 @@ public class MenuAdministrador {
             }
         } while (opcion != 9);
     }
-
-
 }

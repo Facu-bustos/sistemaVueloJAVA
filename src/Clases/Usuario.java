@@ -15,17 +15,28 @@ public abstract class Usuario extends Persona{
 
     private String email;
     private String contrasenia;
+    private String rol;
 
-
-    // CONSTRUCTOR
-    public Usuario(String email, String contrasenia) throws JSONException {
+    public Usuario(String nombre, String apellido, String DNI, String direccion, String nacionalidad, String telefono, String fechaNacimiento, String email, String contrasenia, String rol) {
+        super(nombre, apellido, DNI, direccion, nacionalidad, telefono, fechaNacimiento);
         this.email = email;
         this.contrasenia = contrasenia;
+        this.rol = rol;
+    }
+
+    public Usuario(String email, String contrasenia, String rol) {
+        this.email = email;
+        this.contrasenia = contrasenia;
+        this.rol = rol;
     }
 
     public Usuario() {
 
     }
+
+    public Usuario(String email, String contrasenia) {
+    }
+
 
     public String getEmail() {
         return email;
@@ -43,26 +54,14 @@ public abstract class Usuario extends Persona{
         this.contrasenia = contrasenia;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Usuario usuario)) return false;
-        if (!super.equals(o)) return false;
-        return Objects.equals(getEmail(), usuario.getEmail()) && Objects.equals(getContrasenia(), usuario.getContrasenia());
+    public String getRol() {
+        return rol;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), getEmail(), getContrasenia());
+    public void setRol(String rol) {
+        this.rol = rol;
     }
 
-    @Override
-    public String toString() {
-        return "Usuario{" +
-                "email='" + email + '\'' +
-                ", contrasenia='" + contrasenia + '\'' +
-                "} " + super.toString();
-    }
-    // VALIDAR CONTRASENIA
 
+    public abstract  void mostrarMenu() throws JSONException;
 }

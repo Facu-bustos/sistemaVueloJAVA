@@ -1,8 +1,6 @@
 package GestionJSON;
 
-import Clases.Escala;
-import Clases.TicketsDeReserva;
-import Clases.Vuelo;
+import Clases.*;
 import JSONutiles.JSONUtiles;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -88,4 +86,24 @@ public class GestionJSON {
         }
         JSONUtiles.grabar(jVuelo);
     }
+
+
+    public static List<Usuario> mapeoPasajero() throws JSONException {
+        JSONObject json=new JSONObject(JSONUtiles.leer("usser.json"));
+        JSONArray jusuarios=json.getJSONArray("usuarios");
+
+        List<Usuario>listaDePasajeros=new ArrayList<>();
+
+        for(int i=0; i<jusuarios.length(); i++)
+        {
+            JSONObject jusuario=jusuarios.getJSONObject(i);
+            Usuario usuario = new Pasajero();
+            usuario.setEmail(jusuario.getString("email"));
+            usuario.setEmail(jusuario.getString("contrasenia"));
+            usuario.setRol(jusuario.getString("rol"));
+        }
+        return listaDePasajeros;
+    }
+
+
 }

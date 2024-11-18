@@ -27,6 +27,8 @@ public class Pasajero extends Usuario {
 
     }
 
+
+
     public List<TicketsDeReserva> getReservasPasajero() {
         return reservasPasajero;
     }
@@ -69,6 +71,12 @@ public class Pasajero extends Usuario {
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), getNumPasaporte(), getEstadoCheckIN());
+    }
+
+    @Override
+    public void mostrarMenu() throws JSONException {
+        MenuPasajero menuPasajero = new MenuPasajero();
+        menuPasajero.mostrarMenu();
     }
 }
 

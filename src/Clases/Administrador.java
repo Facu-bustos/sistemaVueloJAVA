@@ -1,5 +1,6 @@
 package Clases;
 
+import Menues.MenuAdministrador;
 import org.json.JSONException;
 
 import java.util.List;
@@ -12,4 +13,12 @@ public class Administrador extends Usuario{
         super(email,contrasenia);
     }
 
+    public Administrador() {
+        super();
+    }
+
+    @Override
+    public void mostrarMenu() throws JSONException {
+        MenuAdministrador ad = new MenuAdministrador();
+    }
 }
