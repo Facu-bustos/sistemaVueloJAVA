@@ -85,7 +85,7 @@ public class SistemaLoggin {
                     default:
                         System.out.println("Rol desconocido.");
                 }
-                break; 
+                break;
             }
         }
 
