@@ -83,7 +83,8 @@ public class GestionJSON {
                 break;
 
         }
-        JSONUtiles.grabar(jVuelo);
+        JSONUtiles.agregarVuelo(jVuelo);
+        /*JSONUtiles.grabar(jVuelo);*/
     }
     public static List<Usuario> mapeoListaUsuarios() throws JSONException {
         JSONObject json=new JSONObject(JSONUtiles.leer("usser.json"));

@@ -67,6 +67,9 @@ public class TicketsDeReserva {
         return idVuelo;
     }
 
+    public void setIdVuelo(int idVuelo) {
+        this.idVuelo = idVuelo;
+    }
 
     public String getOrigen() {
         return origen;
@@ -187,7 +190,8 @@ public class TicketsDeReserva {
     @Override
     public String toString() {
         return "TicketsDeReserva{" +
-                "idVuelo=" + idVuelo +
+                "IdReserva=" + IdReserva +
+                ", idVuelo=" + idVuelo +
                 ", origen='" + origen + '\'' +
                 ", destino='" + destino + '\'' +
                 ", horaSalida='" + horaSalida + '\'' +
@@ -203,5 +207,4 @@ public class TicketsDeReserva {
                 ", estadoVuelo='" + estadoVuelo + '\'' +
                 '}';
     }
-
 }
