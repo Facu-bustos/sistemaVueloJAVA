@@ -1,22 +1,22 @@
 package Menues;
 
-import Clases.*;
+import Clases.TicketsDeReserva;
+import Clases.Vuelo;
 import GestionDeMenues.GestionAgenteDeVentas;
-import GestionDeMenues.GestionVuelo;
-import JSONutiles.JSONUtiles;
-import org.json.JSONArray;
+import GestionJSON.GestionJSON;
 import org.json.JSONException;
-import org.json.JSONObject;
 
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class MenuAgenteVentas {
 
     public void mostrarMenu() throws JSONException{
-
-        GestionAgenteDeVentas GestorAdV = new GestionAgenteDeVentas();
         Scanner scanner = new Scanner(System.in);
+        GestionAgenteDeVentas GestorAdV = new GestionAgenteDeVentas();
+        List<Vuelo>listaVuelos=GestionJSON.mapeoVuelo();
+        List<TicketsDeReserva> ticketsDeReservas = new ArrayList<>();
 
         int opcion;
 
@@ -26,42 +26,34 @@ public class MenuAgenteVentas {
             System.out.println("2. Realizar una reserva para un pasajero");
             System.out.println("3. Cancelar una reserva para un pasajero");
             System.out.println("4. Ver reservas de pasajeros");
-            System.out.println("5. Buscar vuelo por origen o destino");
-            System.out.println("6. Volver al menú principal");
+            System.out.println("5. Volver al menú principal");
             System.out.print("Seleccione una opción: ");
 
             opcion = scanner.nextInt();
-            scanner.nextLine(); // Limpiar buffer
+            scanner.nextLine();
 
             switch (opcion) {
                 case 1:
-                    System.out.println("Mostrando vuelos disponibles...");
-                    // Lógica para mostrar vuelos disponibles
+                    GestorAdV.lecturaDeArraylistaVuelos(listaVuelos);
                     break;
                 case 2:
-                    System.out.println("Realizando una reserva...");
-                    // Lógica para realizar una reserva
+                    List<TicketsDeReserva>reservas=GestorAdV.comprarVuelo(listaVuelos);
+                    ticketsDeReservas.addAll(reservas);
                     break;
                 case 3:
-                    System.out.println("Cancelando una reserva...");
-                    // Lógica para cancelar una reserva
+                    GestorAdV.eliminarReserva(ticketsDeReservas);
                     break;
                 case 4:
-                    System.out.println("Mostrando reservas de pasajeros...");
-                    // Lógica para ver reservas
+                    GestorAdV.mostrarReservas(ticketsDeReservas);
                     break;
                 case 5:
-                System.out.println("Buscando vuelo...");
-                // Lógica para buscar vuelos
-                    break;
-                case 6:
-                    System.out.println("Volviendo al menú principal...");
+
                     break;
                 default:
                     System.out.println("Opción no válida. Intente nuevamente.");
             }
-        } while (opcion != 6);
+        } while (opcion != 5);
+        scanner.close();
     }
-
 }
 

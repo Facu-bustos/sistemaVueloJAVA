@@ -1,24 +1,13 @@
+import GestionDeMenues.GestionAgenteDeVentas;
 import GestionDeMenues.GestionPasajero;
+import Menues.MenuAgenteVentas;
 import Menues.MenuPasajero;
+import SistemaDeLoggeo.SistemaLoggin;
 import org.json.JSONException;
 
 public class Main {
     public static void main(String[] args) throws JSONException {
-
-        //ACA TENEMOS QUE HACER LA LOGICA PARA ENTRAR A QUE TIPO DE MENU DEBEMOS ENTRAR..
-        //SI SOMOS PASAJERO DEBEMOS ENTRAR COMO PASAJERO
-        //SI SOMOS AGENTE DE VENTA ENTRAR COMO AGENTE DE VENTA
-        //SI SOMOS ADMINISTRADO ENTRAR COMO ADMINISTRADOR
-
-        /*GestionPasajero GP = new GestionPasajero();
-        GP.llamadoPasajero();*/
-
-        /*GestionAgenteDeVentas GAdV = new GestionAgenteDeVentas();
-        GAdV.llamadoAgenteDeVentas();*/
-
-        /*GestionAdministrador GA = new GestionAdministrador();
-        GA.llamadoAdministrador();*/
-
-
+        SistemaLoggin sistemaLoggeo = new SistemaLoggin();
+        sistemaLoggeo.loggear();
     }
 }

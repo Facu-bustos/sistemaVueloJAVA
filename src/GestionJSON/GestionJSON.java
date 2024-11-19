@@ -1,7 +1,6 @@
 package GestionJSON;
 
-import Clases.Escala;
-import Clases.Vuelo;
+import Clases.*;
 import JSONutiles.JSONUtiles;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -53,12 +52,13 @@ public class GestionJSON {
         return listaDeVuelos;
     }
 
-    public static void createJSON(int idVuelo, List<Vuelo> listaVuelo) throws JSONException {
+    public static void createJSON(String nombre,String apellido,String NP,List<TicketsDeReserva> ticketsDeReservas) throws JSONException {
         JSONObject jVuelo = new JSONObject();
         JSONArray jescalas = new JSONArray();
-        for (Vuelo v : listaVuelo) {
-
-            if (idVuelo == v.getIdVuelo()) {
+        for (TicketsDeReserva v : ticketsDeReservas) {
+                jVuelo.put("N° Pasaporte:",NP);
+                jVuelo.put("nombre:",nombre);
+                jVuelo.put("apellido:",apellido);
                 jVuelo.put("id_vuelo", v.getIdVuelo());
                 jVuelo.put("origen", v.getOrigen());
                 jVuelo.put("destino", v.getDestino());
@@ -83,8 +83,57 @@ public class GestionJSON {
                 // Añadir escalas al JSON si existiera alguna
                 jVuelo.put("escalas", jescalas);
                 break;
+
+        }
+        JSONUtiles.agregarVuelo(jVuelo);
+        /*JSONUtiles.grabar(jVuelo);*/
+    }
+    public static List<Usuario> mapeoListaUsuarios() throws JSONException {
+        JSONObject json=new JSONObject(JSONUtiles.leer("usser.json"));
+        JSONArray jusuarios=json.getJSONArray("usuarios");
+
+        List<Usuario>listaDeUsuarios=new ArrayList<>();
+
+        for(int i=0; i<jusuarios.length(); i++) {
+            JSONObject jusuario = jusuarios.getJSONObject(i);
+
+            if (jusuario.getString("rol").equalsIgnoreCase("pasajero")) {
+                Usuario Pusuario = new Pasajero();
+                Pusuario.setEmail(jusuario.getString("email"));
+                Pusuario.setContrasenia(jusuario.getString("contrasenia"));
+                Pusuario.setRol(jusuario.getString("rol"));
+                listaDeUsuarios.add(Pusuario);
+            } else if (jusuario.getString("rol").equalsIgnoreCase("administrador")) {
+                Usuario ad = new Administrador();
+                ad.setEmail(jusuario.getString("email"));
+                ad.setContrasenia(jusuario.getString("contrasenia"));
+                ad.setRol(jusuario.getString("rol"));
+                listaDeUsuarios.add(ad);
+            } else {
+                Usuario ag = new AgenteVenta();
+                ag.setEmail(jusuario.getString("email"));
+                ag.setContrasenia(jusuario.getString("contrasenia"));
+                ag.setRol(jusuario.getString("rol"));
+                listaDeUsuarios.add(ag);
             }
         }
-        JSONUtiles.grabar(jVuelo);
+        return listaDeUsuarios;
     }
+
+    public static void createJSONusuarios(List<Usuario>listaUsuarios) throws JSONException {
+        JSONObject jsonUsuarios= new JSONObject();
+        JSONArray arrayUsuarios = new JSONArray();
+
+        for(int i=0; i<listaUsuarios.size(); i++)
+        {
+            JSONObject objetoU = new JSONObject();
+            objetoU.put("email",listaUsuarios.get(i).getEmail());
+            objetoU.put("contrasenia",listaUsuarios.get(i).getContrasenia());
+            objetoU.put("rol",listaUsuarios.get(i).getRol());
+            arrayUsuarios.put(objetoU);
+        }
+        jsonUsuarios.put("usuarios",arrayUsuarios);
+        JSONUtiles.grabarUsuarios(jsonUsuarios);
+    }
+
 }

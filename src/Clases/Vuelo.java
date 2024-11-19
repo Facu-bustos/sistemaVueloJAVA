@@ -1,8 +1,5 @@
 package Clases;
 
-import Enumeradores.TipoEstadoVuelo;
-import Enumeradores.TipoVuelo;
-
 import java.util.List;
 import java.util.Objects;
 
