@@ -52,11 +52,13 @@ public class GestionJSON {
         return listaDeVuelos;
     }
 
-    public static void createJSON(String NP,List<TicketsDeReserva> ticketsDeReservas) throws JSONException {
+    public static void createJSON(String nombre,String apellido,String NP,List<TicketsDeReserva> ticketsDeReservas) throws JSONException {
         JSONObject jVuelo = new JSONObject();
         JSONArray jescalas = new JSONArray();
         for (TicketsDeReserva v : ticketsDeReservas) {
-                jVuelo.put("Pasajero:",NP);
+                jVuelo.put("N° Pasaporte:",NP);
+                jVuelo.put("nombre:",nombre);
+                jVuelo.put("apellido:",apellido);
                 jVuelo.put("id_vuelo", v.getIdVuelo());
                 jVuelo.put("origen", v.getOrigen());
                 jVuelo.put("destino", v.getDestino());
