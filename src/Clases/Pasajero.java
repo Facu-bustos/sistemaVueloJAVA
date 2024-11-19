@@ -40,7 +40,6 @@ public class Pasajero extends Usuario {
     public Pasajero() {
 
     }
-
     public List<TicketsDeReserva> getReservasPasajero() {
         return reservasPasajero;
     }
@@ -94,9 +93,7 @@ public class Pasajero extends Usuario {
                 ", reservasPasajero=" + reservasPasajero +
                 "} " + super.toString();
     }
-
-    public String CheckIN()
-    {
+    public void CheckIN(List<TicketsDeReserva>ticketsDeReservas) throws JSONException {
         Scanner sc = new Scanner(System.in);
         System.out.println("Ingrese Número de Pasaporte:");
         String numeroPasaporte;
@@ -104,7 +101,7 @@ public class Pasajero extends Usuario {
             numeroPasaporte = sc.nextLine().trim();
 
             // Validamos que sean solo numeros,
-            // es una expresion regular que valida que solo haya digitos del 0 a 9
+            // validamos que solo haya digitos del 0 a 9
             if (numeroPasaporte.matches("\\d+")) {
                 this.numPasaporte=numeroPasaporte;
                 break; // Salir del bucle si es válido
@@ -112,21 +109,66 @@ public class Pasajero extends Usuario {
                 System.out.println("Error: El número de pasaporte debe contener solo números. Intente nuevamente:");
             }
         }
+        String nombre = "";
+        String apellido = "";
+        boolean nombreValido = false;
+        while (!nombreValido) {
+            System.out.println("Ingrese NOMBRE:");
+            nombre = sc.nextLine();
+            nombreValido = true; // Asumimos que es válido
 
+            // Verificamos que todos los caracteres sean letras
+            for (int i = 0; i < nombre.length(); i++) {
+                char c = nombre.charAt(i);
+                if (!((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || c == ' ')) {
+                    nombreValido = false;
+                    System.out.println("El nombre solo puede contener letras. Intente de nuevo.");
+                    break;
+                }
+            }
+        }
+        boolean apellidoValido = false;
+        while (!apellidoValido) {
+            System.out.println("Ingrese APELLIDO:");
+            apellido = sc.nextLine();
+            apellidoValido = true;
+            for (int i = 0; i < apellido.length(); i++) {
+                char c = apellido.charAt(i);
+                if (!((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || c == ' ')) {
+                    apellidoValido = false;
+                    System.out.println("El apellido solo puede contener letras. Intente de nuevo.");
+                    break;
+                }
+            }
+        }
         //ACA HACEMOS UNA DOBLE VALIDACION
         //EL NUMERO DE PASAPORTE QUE ASIGNAMOS ES EL CORRECTO COMPARA
         //Y CAMBIAMOS EL ESTADO DEL CHECK IN A REALIZADO.
-        if (this.numPasaporte.equals(numeroPasaporte)) {
-            if (this.estadoCheckIN == TipoEstadoCheckIn.PENDIENTE) {
-                this.estadoCheckIN = TipoEstadoCheckIn.REALIZADO;
-                System.out.println("Check-in realizado con éxito.");
-            } else {
-                System.out.println("El check-in ya fue realizado.");
+        System.out.println("Realizando checkIN");
+        try {
+            for(int i=0; i<3; i++)
+            {
+                Thread.sleep(1000);
+                System.out.println("."+".");
             }
-        } else {
-            System.out.println("Número de pasaporte incorrecto.");
+            // Pausa de 1 segundo
+            if (this.numPasaporte.equals(numeroPasaporte)) {
+                if (this.estadoCheckIN == TipoEstadoCheckIn.PENDIENTE) {
+                    this.estadoCheckIN = TipoEstadoCheckIn.REALIZADO;
+                    System.out.println("Check-in realizado con éxito.");
+                } else {
+                    System.out.println("El check-in ya fue realizado.");
+                }
+            } else {
+                System.out.println("Número de pasaporte incorrecto.");
+            }
+        } catch (InterruptedException e) {
+            System.err.println("El retardo fue interrumpido.");
         }
-        return this.numPasaporte;
+        if(numPasaporte!=null)
+        {
+            GestionJSON.createJSON(nombre,apellido,numeroPasaporte,ticketsDeReservas);
+        }
     }
 }
 

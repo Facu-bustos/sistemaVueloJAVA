@@ -70,10 +70,20 @@ public class GestionPasajero {
             if (!vueloEncontrado) {
                 System.out.println("No se encontró ningún vuelo con el destino ingresado. Por favor, intente nuevamente.");
             }
-
             System.out.println("¿Desea adquirir otro destino? (si/no):");
             String respuesta = scanner.nextLine().trim();
             seguirComprando = respuesta.equalsIgnoreCase("si");
+        }
+        System.out.println("Realizando compra");
+        try {
+            for(int i=0; i<3; i++)
+            {
+                Thread.sleep(1000);
+                System.out.println("."+".");
+            }
+        }catch (Exception e)
+        {
+            throw new RuntimeException("Error en la ejecucion");
         }
         return listaDeReserva;
     }
@@ -120,10 +130,4 @@ public class GestionPasajero {
             System.out.println(tr.toString());
         }
     }
-
-    public void CreateJSON(String NP,List<TicketsDeReserva>ticketsDeReservas) throws JSONException {
-       GestionJSON.createJSON(NP,ticketsDeReservas);
-    }
-
-
 }
