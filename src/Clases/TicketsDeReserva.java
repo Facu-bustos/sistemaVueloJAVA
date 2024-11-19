@@ -6,6 +6,7 @@ import java.util.Objects;
 public class TicketsDeReserva {
     //Atributos
     //ATRIBUTOS
+    private String NumeroPasaporte;
     private int IdReserva;
     private int idVuelo;
     private String origen;
@@ -27,7 +28,8 @@ public class TicketsDeReserva {
 
     }
 
-    public TicketsDeReserva(int idReserva, int idVuelo, String origen, String destino, String horaSalida, String horaLlegada, String duracion, double precio, int cantidadDisponible, String aerolinea, String clase, String numeroVuelo, List<Escala> escalas, String tipoVuelo, String estadoVuelo) {
+    public TicketsDeReserva(int idReserva,String NumeroPasaporte ,int idVuelo, String origen, String destino, String horaSalida, String horaLlegada, String duracion, double precio, int cantidadDisponible, String aerolinea, String clase, String numeroVuelo, List<Escala> escalas, String tipoVuelo, String estadoVuelo) {
+        this.NumeroPasaporte = NumeroPasaporte;
         IdReserva = idReserva;
         this.idVuelo = idVuelo;
         this.origen = origen;
@@ -45,6 +47,14 @@ public class TicketsDeReserva {
         this.estadoVuelo = estadoVuelo;
     }
 
+    public String getNumeroPasaporte() {
+        return NumeroPasaporte;
+    }
+
+    public void setNumeroPasaporte(String numeroPasaporte) {
+        NumeroPasaporte = numeroPasaporte;
+    }
+
     public int getIdReserva() {
         return IdReserva;
     }
@@ -57,9 +67,6 @@ public class TicketsDeReserva {
         return idVuelo;
     }
 
-    public void setIdVuelo(int idVuelo) {
-        this.idVuelo = idVuelo;
-    }
 
     public String getOrigen() {
         return origen;

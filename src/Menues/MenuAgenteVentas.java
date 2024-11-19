@@ -47,6 +47,7 @@ public class MenuAgenteVentas {
                     GestorAdV.mostrarReservas(ticketsDeReservas);
                     break;
                 case 5:
+
                     break;
                 default:
                     System.out.println("Opción no válida. Intente nuevamente.");

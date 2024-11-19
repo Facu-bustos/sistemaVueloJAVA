@@ -9,16 +9,20 @@ public class Administrador extends Usuario{
 
     // CONSTRUCTOR
 
-    public Administrador(String email, String contrasenia) throws JSONException {
-        super(email,contrasenia);
+
+    public Administrador(String email, String contrasenia, String rol) {
+        super(email, contrasenia, rol);
     }
 
     public Administrador() {
-        super();
+    }
+
+    public Administrador(String email, String contrasenia) {
+        super(email, contrasenia);
     }
 
     @Override
-    public void mostrarMenu() throws JSONException {
-        MenuAdministrador ad = new MenuAdministrador();
+    public String toString() {
+        return "Administrador{} " + super.toString();
     }
 }

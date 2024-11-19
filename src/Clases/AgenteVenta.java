@@ -10,11 +10,6 @@ public class AgenteVenta extends Usuario{
 
     // CONSTRUCTOR
 
-
-    public AgenteVenta(String nombre, String apellido, String DNI, String direccion, String nacionalidad, String telefono, String fechaNacimiento, String email, String contrasenia, String rol) {
-        super(nombre, apellido, DNI, direccion, nacionalidad, telefono, fechaNacimiento, email, contrasenia, rol);
-    }
-
     public AgenteVenta(String email, String contrasenia, String rol) {
         super(email, contrasenia, rol);
     }
@@ -22,9 +17,13 @@ public class AgenteVenta extends Usuario{
     public AgenteVenta() {
     }
 
-    @Override
-    public void mostrarMenu() throws JSONException {
-        MenuAgenteVentas agenteVentas = new MenuAgenteVentas();
-        agenteVentas.mostrarMenu();
+    public AgenteVenta(String email, String contrasenia) {
+        super(email, contrasenia);
     }
+
+    @Override
+    public String toString() {
+        return "AgenteVenta{} " + super.toString();
+    }
+
 }

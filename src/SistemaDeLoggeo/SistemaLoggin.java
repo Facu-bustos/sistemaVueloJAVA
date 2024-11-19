@@ -6,6 +6,7 @@ import Clases.Pasajero;
 import Clases.Usuario;
 import GestionJSON.GestionJSON;
 import Menues.MenuAdministrador;
+import Menues.MenuAgenteVentas;
 import Menues.MenuPasajero;
 import org.json.JSONException;
 
@@ -19,7 +20,7 @@ public class SistemaLoggin {
     private List<Usuario> listaDeUsuarios;
 
     public SistemaLoggin() throws JSONException {
-        this.listaDeUsuarios = GestionJSON.mapeoPasajero();
+        this.listaDeUsuarios = GestionJSON.mapeoListaUsuarios();
     }
 
     public List<Usuario> getListaDeUsuarios() {
@@ -50,74 +51,72 @@ public class SistemaLoggin {
     }
 
     public void loggear() throws JSONException {
-
         Scanner sc = new Scanner(System.in);
         System.out.println("Ingrese email:");
         String emailLoggeo = sc.nextLine();
         System.out.println("Ingrese contraseña:");
         String contrasenia = sc.nextLine();
-        System.out.println("Ingrese rol");
+        System.out.println("Ingrese rol:");
         String rol = sc.nextLine();
 
         boolean encontrado = false;
 
-        for(Usuario u: listaDeUsuarios)
-        {
-            if(u.getEmail().equalsIgnoreCase(emailLoggeo)&&u.getContrasenia().equalsIgnoreCase(contrasenia) && u.getRol().equalsIgnoreCase(rol))
-            {
-                Administrador ad = new Administrador();
-                encontrado = true;
-                if(encontrado==true)
-                {
-                    ad.mostrarMenu();
-                }
-            } else if (u.getEmail().equalsIgnoreCase(emailLoggeo)&&u.getContrasenia().equalsIgnoreCase(contrasenia) && u.getRol().equalsIgnoreCase(rol)) {
+        for (Usuario u : listaDeUsuarios) {
+            if (u.getEmail().equalsIgnoreCase(emailLoggeo) &&
+                    u.getContrasenia().equalsIgnoreCase(contrasenia) &&
+                    u.getRol().equalsIgnoreCase(rol)) {
 
-                Pasajero pa = new Pasajero();
-                encontrado=true;
-                if(encontrado==true)
-                {
-                    pa.mostrarMenu();
+                encontrado = true;
+
+                // Mostrar el menú según el rol
+                switch (rol.toLowerCase()) {
+                    case "administrador":
+                        MenuAdministrador menuAdmin = new MenuAdministrador();
+                        menuAdmin.mostrarMenu();
+                        break;
+                    case "pasajero":
+                        MenuPasajero menuPasajero = new MenuPasajero();
+                        menuPasajero.mostrarMenu();
+                        break;
+                    case "agente de ventas":
+                        MenuAgenteVentas menuAgente = new MenuAgenteVentas();
+                        menuAgente.mostrarMenu();
+                        break;
+                    default:
+                        System.out.println("Rol desconocido.");
                 }
-            }else
-            {
-                AgenteVenta agente = new AgenteVenta();
-                encontrado=true;
-                if(encontrado==true)
-                {
-                    agente.mostrarMenu();
-                }
+                break; // Salimos del bucle una vez encontrado
             }
         }
 
-
-
-        if(encontrado==false)
-        {
-            if(rol.equalsIgnoreCase("administrador"))
-            {
-                Usuario ad = new Administrador();
-                ad.setEmail(emailLoggeo);
-                ad.setContrasenia(contrasenia);
-                ad.setRol(rol);
-                listaDeUsuarios.add(ad);
-                //ACA VA EL LLAMADO PARA CREAR JSON USSER
-            } else if (rol.equalsIgnoreCase("pasajero")) {
-                Usuario pa = new Pasajero();
-                pa.setEmail(emailLoggeo);
-                pa.setContrasenia(contrasenia);
-                pa.setRol(rol);
-                listaDeUsuarios.add(pa);
-                //ACA VA EL LLAMADO PARA CREAR JSON USSER
-            }else
-            {
-                Usuario ag = new AgenteVenta();
-                ag.setEmail(emailLoggeo);
-                ag.setContrasenia(contrasenia);
-                ag.setRol(rol);
-                listaDeUsuarios.add(ag);
-                //ACA VA EL LLAMADO PARA CREAR JSON USSER
+        if (!encontrado) {
+            Usuario nuevoUsuario;
+            switch (rol.toLowerCase()) {
+                case "administrador":
+                    nuevoUsuario = new Administrador();
+                    nuevoUsuario.setEmail(emailLoggeo);
+                    nuevoUsuario.setContrasenia(contrasenia);
+                    nuevoUsuario.setRol(rol);
+                    break;
+                case "pasajero":
+                    nuevoUsuario = new Pasajero();
+                    nuevoUsuario.setEmail(emailLoggeo);
+                    nuevoUsuario.setContrasenia(contrasenia);
+                    nuevoUsuario.setRol(rol);
+                    break;
+                case "agente de ventas":
+                    nuevoUsuario = new AgenteVenta();
+                    nuevoUsuario.setEmail(emailLoggeo);
+                    nuevoUsuario.setContrasenia(contrasenia);
+                    nuevoUsuario.setRol(rol);
+                    break;
+                default:
+                    System.out.println("Rol inválido. No se puede crear el usuario.");
+                    return;
             }
+            listaDeUsuarios.add(nuevoUsuario);
+            System.out.println("Nuevo usuario creado y agregado a la lista.");
+            GestionJSON.createJSONusuarios(listaDeUsuarios);
         }
     }
 }

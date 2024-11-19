@@ -13,7 +13,7 @@ public class JSONUtiles {
 
     public static void grabarArray(JSONArray array) {
         try {
-            FileWriter file = new FileWriter("comprasVuelos.json");
+            FileWriter file = new FileWriter("cComprasVuelos.json");
             file.write(array.toString());
             file.flush();
             file.close();
@@ -35,8 +35,17 @@ public class JSONUtiles {
         }
     }
 
+    public static void grabarUsuarios(JSONObject jsonObject) {
+        try {
+            FileWriter file = new FileWriter("usser.json");
+            file.write(jsonObject.toString());
+            file.flush();
+            file.close();
+        } catch (IOException e) {
 
-
+            e.printStackTrace();
+        }
+    }
 
 
     public static JSONTokener leer(String archivo) {

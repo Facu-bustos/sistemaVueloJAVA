@@ -1,8 +1,7 @@
 package GestionDeMenues;
 
-import Clases.Escala;
-import Clases.TicketsDeReserva;
-import Clases.Vuelo;
+import Clases.*;
+import GestionJSON.GestionJSON;
 import Menues.MenuAgenteVentas;
 import Menues.MenuPasajero;
 import org.json.JSONException;
@@ -45,11 +44,25 @@ public class GestionPasajero {
                     ticketReserva.setIdVuelo(v.getIdVuelo());
                     ticketReserva.setOrigen(v.getOrigen());
                     ticketReserva.setDestino(v.getDestino());
-                    ticketReserva.setPrecio(v.getPrecio());
-                    ticketReserva.setNumeroVuelo(v.getNumeroVuelo());
-                    ticketReserva.setAerolinea(v.getAerolinea());
-                    ticketReserva.setDuracion(v.getDuracion());
+                    ticketReserva.setHoraSalida(v.getHoraSalida());
                     ticketReserva.setHoraLlegada(v.getHoraLlegada());
+                    ticketReserva.setDuracion(v.getDuracion());
+                    ticketReserva.setPrecio(v.getPrecio());
+                    ticketReserva.setCantidadDisponible(v.getCantidadDisponible());
+                    ticketReserva.setAerolinea(v.getAerolinea());
+                    ticketReserva.setClase(v.getClase());
+                    ticketReserva.setNumeroVuelo(v.getNumeroVuelo());
+                    List<Escala>escalas = new ArrayList<>();
+                    for(Escala es: v.getEscalas())
+                    {
+                      Escala escala = new Escala();
+                      escala.setAeropueto(es.getAeropueto());
+                      escala.setHoraSalida(es.getHoraSalida());
+                      escalas.add(escala);
+                    }
+                    ticketReserva.setEscalas(escalas);
+                    ticketReserva.setTipoVuelo(v.getTipoVuelo());
+                    ticketReserva.setEstadoVuelo(v.getEstadoVuelo());
                     listaDeReserva.add(ticketReserva);
                     break;
                 }
@@ -108,9 +121,8 @@ public class GestionPasajero {
         }
     }
 
-    public void checkIn()
-    {
-
+    public void CreateJSON(String NP,List<TicketsDeReserva>ticketsDeReservas) throws JSONException {
+       GestionJSON.createJSON(NP,ticketsDeReservas);
     }
 
 
