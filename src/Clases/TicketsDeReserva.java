@@ -67,6 +67,9 @@ public class TicketsDeReserva {
         return idVuelo;
     }
 
+    public void setIdVuelo(int idVuelo) {
+        this.idVuelo = idVuelo;
+    }
 
     public String getOrigen() {
         return origen;
