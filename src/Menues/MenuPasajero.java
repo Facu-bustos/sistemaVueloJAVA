@@ -40,7 +40,8 @@ public class MenuPasajero {
             switch (opcion) {
                 case 1:
                     System.out.println("Mostrando lista de vuelos...");
-                    GP.lecturaDeArraylistaVuelos(listaVuelos);
+                   /* GP.lecturaDeArraylistaVuelos(listaVuelos);*/
+                    GP.lecturaVuelos(listaVuelos);
                     break;
                 case 2:
                     System.out.println("Realizando reserva...");

@@ -139,8 +139,6 @@ public class GestionJSON {
         /*JSONUtiles.grabar(jVuelo);*/
     }
 
-
-
     public static List<Usuario> mapeoListaUsuarios() throws JSONException {
         JSONObject json=new JSONObject(JSONUtiles.leer("usser.json"));
         JSONArray jusuarios=json.getJSONArray("usuarios");

@@ -50,7 +50,7 @@ public static void agregarVuelo(JSONObject nuevoVuelo) {
         if (archivo.exists() && archivo.length() > 0) {
             String contenido = new String(Files.readAllBytes(Paths.get("comprasVuelos.json")), StandardCharsets.UTF_8);
 
-            // Si el contenido no es un JSONArray válido, inicializamos un JSONArray vacío
+            // inicializamos un JSONArray vacío
             if (contenido.startsWith("{")) {
                 // Si el archivo contiene un objeto en lugar de un arreglo, es un error
                 System.out.println("El archivo contiene datos no válidos. Reiniciando el archivo.");

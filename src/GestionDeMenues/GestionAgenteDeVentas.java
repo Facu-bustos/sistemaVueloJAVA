@@ -8,23 +8,31 @@ import Clases.Vuelo;
 import Enumeradores.TipoEstadoCheckIn;
 import Excepciones.VueloNoEncontradoExcepcion;
 import GestionJSON.GestionJSON;
+import Interface.I_interface;
 import org.json.JSONException;
 
 import java.util.*;
 
-public class GestionAgenteDeVentas {
+public class GestionAgenteDeVentas implements I_interface {
 
     public GestionAgenteDeVentas()
     {
     }
 
-
-    public void lecturaDeArraylistaVuelos(List<Vuelo>listaVuelos) throws JSONException {
+    public void lecturaVuelos(List<Vuelo>listaVuelos) {
         for(Vuelo v: listaVuelos)
         {
             System.out.println(v);
         }
+
     }
+
+    /*public void lecturaDeArraylistaVuelos(List<Vuelo>listaVuelos) throws JSONException {
+        for(Vuelo v: listaVuelos)
+        {
+            System.out.println(v);
+        }
+    }*/
 
     public List<TicketsDeReserva>comprarVuelo(List<Vuelo>listaVuelos)
     {

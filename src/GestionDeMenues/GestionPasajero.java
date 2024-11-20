@@ -4,6 +4,7 @@ import Clases.*;
 import Excepciones.ErrorDeEliminacion;
 import Excepciones.VueloNoEncontradoExcepcion;
 import GestionJSON.GestionJSON;
+import Interface.I_interface;
 import Menues.MenuAgenteVentas;
 import Menues.MenuPasajero;
 import org.json.JSONException;
@@ -15,15 +16,19 @@ import java.util.Scanner;
 
 import static GestionJSON.GestionJSON.createJSON;
 
-public class GestionPasajero {
-
-
-    public void lecturaDeArraylistaVuelos(List<Vuelo>listaVuelos) throws JSONException {
+public class GestionPasajero implements I_interface {
+    @Override
+    public void lecturaVuelos(List<Vuelo>listaVuelos) {
         for(Vuelo v: listaVuelos)
         {
             System.out.println(v);
         }
+
     }
+
+    /*public void lecturaDeArraylistaVuelos(List<Vuelo>listaVuelos) throws JSONException {
+
+    }*/
 
     public List<TicketsDeReserva>comprarVuelo(List<Vuelo>listaVuelos)
     {
@@ -146,4 +151,7 @@ public class GestionPasajero {
             System.out.println(tr.toString());
         }
     }
+
+
+
 }
