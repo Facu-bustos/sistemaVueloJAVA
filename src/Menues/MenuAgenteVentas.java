@@ -1,8 +1,10 @@
 package Menues;
 
+import Clases.AgenteVenta;
 import Clases.TicketsDeReserva;
 import Clases.Vuelo;
 import GestionDeMenues.GestionAgenteDeVentas;
+import GestionDeMenues.GestionPasajero;
 import GestionJSON.GestionJSON;
 import org.json.JSONException;
 
@@ -13,9 +15,12 @@ import java.util.Scanner;
 public class MenuAgenteVentas {
 
     public void mostrarMenu() throws JSONException{
+
         Scanner scanner = new Scanner(System.in);
-        GestionAgenteDeVentas GestorAdV = new GestionAgenteDeVentas();
+        GestionAgenteDeVentas GAV = new GestionAgenteDeVentas();
+        AgenteVenta av = new AgenteVenta();
         List<Vuelo>listaVuelos=GestionJSON.mapeoVuelo();
+
         List<TicketsDeReserva> ticketsDeReservas = new ArrayList<>();
 
         int opcion;
@@ -34,17 +39,17 @@ public class MenuAgenteVentas {
 
             switch (opcion) {
                 case 1:
-                    GestorAdV.lecturaDeArraylistaVuelos(listaVuelos);
+                    GestionPasajero.lecturaDeArraylistaVuelos(listaVuelos);
                     break;
                 case 2:
-                    List<TicketsDeReserva>reservas=GestorAdV.comprarVuelo(listaVuelos);
+                    List<TicketsDeReserva>reservas=GAV.comprarVuelo(listaVuelos);
                     ticketsDeReservas.addAll(reservas);
                     break;
                 case 3:
-                    GestorAdV.eliminarReserva(ticketsDeReservas);
+                    GAV.eliminarReserva(ticketsDeReservas);
                     break;
                 case 4:
-                    GestorAdV.mostrarReservas(ticketsDeReservas);
+                    GAV.mostrarReservas(ticketsDeReservas);
                     break;
                 case 5:
 

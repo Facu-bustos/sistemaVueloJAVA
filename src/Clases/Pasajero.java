@@ -40,6 +40,7 @@ public class Pasajero extends Usuario {
     public Pasajero() {
 
     }
+
     public List<TicketsDeReserva> getReservasPasajero() {
         return reservasPasajero;
     }
@@ -85,6 +86,7 @@ public class Pasajero extends Usuario {
     public int hashCode() {
         return Objects.hash(super.hashCode(), getNumPasaporte(), getEstadoCheckIN());
     }
+
     @Override
     public String toString() {
         return "Pasajero{" +
@@ -93,16 +95,17 @@ public class Pasajero extends Usuario {
                 ", reservasPasajero=" + reservasPasajero +
                 "} " + super.toString();
     }
+
     public void CheckIN(List<TicketsDeReserva>ticketsDeReservas) throws JSONException {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Ingrese Número de Pasaporte:");
         String numeroPasaporte;
+        System.out.println("Ingrese Número de Pasaporte (debe contener 9 digitos):");
         while (true) {
             numeroPasaporte = sc.nextLine().trim();
 
             // Validamos que sean solo numeros,
             // validamos que solo haya digitos del 0 a 9
-            if (numeroPasaporte.matches("\\d+")) {
+            if (numeroPasaporte.matches("\\d+") && (numeroPasaporte.length()==9))  {  // CAMBIAMOS
                 this.numPasaporte=numeroPasaporte;
                 break; // Salir del bucle si es válido
             } else {

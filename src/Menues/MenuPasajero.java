@@ -33,7 +33,9 @@ public class MenuPasajero {
             System.out.println("3. Ver mis reservas");
             System.out.println("4. Cancelar una reserva");
             System.out.println("5. Realizar CheckIN");
-            System.out.println("7. Volver al menú principal");
+            System.out.println("6. Ver datos personales");
+            System.out.println("7. Modificar datos personales");
+            System.out.println("8. Volver al menú principal");
             System.out.print("Seleccione una opción:");
             opcion = scanner.nextInt();
             scanner.nextLine();
@@ -57,7 +59,13 @@ public class MenuPasajero {
                 case 5:
                     p.CheckIN(tikectsDeReserva);
                     break;
+                case 6:
+                    System.out.println("Mostrando datos personales...");
+                    break;
                 case 7:
+                    System.out.println("Modificando datos personales...");
+                    break;
+                case 8:
                     System.out.println("Volviendo al menú principal...");
                     break;
                 default:

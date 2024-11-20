@@ -3,12 +3,14 @@ package Menues;
 import Clases.*;
 import GestionDeMenues.*;
 import GestionDeMenues.GestionAdministrador;
+import GestionJSON.GestionJSON;
 import JSONutiles.JSONUtiles;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class MenuAdministrador {
@@ -17,6 +19,10 @@ public class MenuAdministrador {
 
         GestionAdministrador gestorAdmin = new GestionAdministrador();
         Scanner scanner = new Scanner(System.in);
+        Administrador a = new Administrador();
+        // List<Vuelo> listaVuelos= GestionJSON.mapeoVuelo();
+        // List<TicketsDeReserva> ticketsDeReservas = new ArrayList<>();
+
         int opcion;
 
         do {

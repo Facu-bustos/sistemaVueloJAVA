@@ -16,7 +16,7 @@ import static GestionJSON.GestionJSON.createJSON;
 public class GestionPasajero {
 
 
-    public void lecturaDeArraylistaVuelos(List<Vuelo>listaVuelos) throws JSONException {
+    public static void lecturaDeArraylistaVuelos(List<Vuelo>listaVuelos) throws JSONException {
         for(Vuelo v: listaVuelos)
         {
             System.out.println(v);

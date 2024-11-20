@@ -1,5 +1,6 @@
 package Clases;
 
+import Enumeradores.TipoUsuario;
 import Menues.MenuAdministrador;
 import org.json.JSONException;
 
@@ -10,8 +11,9 @@ public class Administrador extends Usuario{
     // CONSTRUCTOR
 
 
-    public Administrador(String email, String contrasenia, String rol) {
-        super(email, contrasenia, rol);
+    public Administrador(String email, String contrasenia, TipoUsuario rol) {
+        super(email, contrasenia, );
+
     }
 
     public Administrador() {

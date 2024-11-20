@@ -16,12 +16,12 @@ public class GestionAgenteDeVentas {
     }
 
 
-    public void lecturaDeArraylistaVuelos(List<Vuelo>listaVuelos) throws JSONException {
+    /*public void lecturaDeArraylistaVuelos(List<Vuelo>listaVuelos) throws JSONException {
         for(Vuelo v: listaVuelos)
         {
             System.out.println(v);
         }
-    }
+    } METODO REPETIDO EN GESTION PASAJERO*/
 
     public List<TicketsDeReserva>comprarVuelo(List<Vuelo>listaVuelos)
     {

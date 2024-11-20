@@ -1,5 +1,6 @@
 package Clases;
 
+import Enumeradores.TipoUsuario;
 import Excepciones.ContraseniaIncorrectaExcepcion;
 import GestionJSON.GestionJSON;
 import org.json.JSONException;
@@ -16,6 +17,13 @@ public abstract class Usuario {
     private String email;
     private String contrasenia;
     private String rol;
+    // private TipoUsuario rol;
+
+    /*public Usuario(String email, String contrasenia, TipoUsuario rol) {
+        this.email = email;
+        this.contrasenia = contrasenia;
+        this.rol = rol;
+    }*/
 
     public Usuario(String email, String contrasenia, String rol) {
         this.email = email;
@@ -51,9 +59,17 @@ public abstract class Usuario {
         return rol;
     }
 
+    /*public TipoUsuario getRol() {
+        return rol;
+    }*/
+
     public void setRol(String rol) {
         this.rol = rol;
     }
+
+    /*public void setRol(TipoUsuario rol) {
+        this.rol = rol;
+    }*/
 
     @Override
     public String toString() {

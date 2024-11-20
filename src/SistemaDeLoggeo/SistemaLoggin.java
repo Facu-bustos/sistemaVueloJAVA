@@ -4,6 +4,7 @@ import Clases.Administrador;
 import Clases.AgenteVenta;
 import Clases.Pasajero;
 import Clases.Usuario;
+import Enumeradores.TipoUsuario;
 import GestionJSON.GestionJSON;
 import Menues.MenuAdministrador;
 import Menues.MenuAgenteVentas;
@@ -50,26 +51,23 @@ public class SistemaLoggin {
                 '}';
     }
 
-    public void loggear() throws JSONException {
+    public void loggear(TipoUsuario rolSeleccionado) throws JSONException { // MODIFICADO
         Scanner sc = new Scanner(System.in);
         System.out.println("Ingrese email:");
         String emailLoggeo = sc.nextLine();
         System.out.println("Ingrese contraseña:");
         String contrasenia = sc.nextLine();
-        System.out.println("Ingrese rol:");
-        String rol = sc.nextLine();
 
         boolean encontrado = false;
 
         for (Usuario u : listaDeUsuarios) {
             if (u.getEmail().equalsIgnoreCase(emailLoggeo) &&
-                    u.getContrasenia().equalsIgnoreCase(contrasenia) &&
-                    u.getRol().equalsIgnoreCase(rol)) {
+                    u.getContrasenia().equalsIgnoreCase(contrasenia)) {
 
                 encontrado = true;
 
                 // Mostrar el menú según el rol
-                switch (rol.toLowerCase()) {
+                switch (u.getRol()) {
                     case "administrador":
                         MenuAdministrador menuAdmin = new MenuAdministrador();
                         menuAdmin.mostrarMenu();
@@ -83,32 +81,35 @@ public class SistemaLoggin {
                         menuAgente.mostrarMenu();
                         break;
                     default:
-                        System.out.println("Rol desconocido.");
+                        System.out.println("Rol desconocido."); // ESTO NO VA
                 }
                 break;
             }
         }
 
-        if (!encontrado) {
+        if (!encontrado) { // ESTO ESTABA FUERA DEL FOR, CREO QUE VA ADENTRO
             Usuario nuevoUsuario;
-            switch (rol.toLowerCase()) {
-                case "administrador":
+            switch (rolSeleccionado) {
+                //case "administrador": ASI ES COMO ESTABAN LOS 3
+                case ADMINISTRADOR:
                     nuevoUsuario = new Administrador();
                     nuevoUsuario.setEmail(emailLoggeo);
                     nuevoUsuario.setContrasenia(contrasenia);
-                    nuevoUsuario.setRol(rol);
+                    //nuevoUsuario.setRol(rolSeleccionado); TIRA ERROR PORQUE ESPERA UN STRING, HAY QUE MODIFICAR EL GET Y SET NADA MAS
                     break;
-                case "pasajero":
+                //case "pasajero":
+                case PASAJERO:
                     nuevoUsuario = new Pasajero();
                     nuevoUsuario.setEmail(emailLoggeo);
                     nuevoUsuario.setContrasenia(contrasenia);
-                    nuevoUsuario.setRol(rol);
+                    //nuevoUsuario.setRol(rolSeleccionado);
                     break;
-                case "agente de ventas":
+                //case "agente de ventas":
+                case AGENTE_VENTA:
                     nuevoUsuario = new AgenteVenta();
                     nuevoUsuario.setEmail(emailLoggeo);
                     nuevoUsuario.setContrasenia(contrasenia);
-                    nuevoUsuario.setRol(rol);
+                    //nuevoUsuario.setRol(rolSeleccionado);
                     break;
                 default:
                     System.out.println("Rol inválido. No se puede crear el usuario.");
@@ -116,6 +117,7 @@ public class SistemaLoggin {
             }
             listaDeUsuarios.add(nuevoUsuario);
             System.out.println("Nuevo usuario creado y agregado a la lista.");
+
             GestionJSON.createJSONusuarios(listaDeUsuarios);
         }
     }
