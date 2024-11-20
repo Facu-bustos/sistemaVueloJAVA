@@ -91,7 +91,7 @@ public static void agregarVuelo(JSONObject nuevoVuelo) {
                 if (contenido.startsWith("{")) {
                     // Si el archivo contiene un objeto en lugar de un arreglo, es un error
                     System.out.println("El archivo contiene datos no válidos. Reiniciando el archivo.");
-                    vuelosExistentes = new JSONArray();  // Reiniciamos el archivo
+                    vuelosExistentes = new JSONArray();  
                 } else {
                     vuelosExistentes = new JSONArray(contenido);
                 }

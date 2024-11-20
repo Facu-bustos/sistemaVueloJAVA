@@ -136,7 +136,6 @@ public class GestionJSON {
             throw new RuntimeException("Error en la ejecucion");
         }
         JSONUtiles.reprogramarVuelo(jVuelo);
-        /*JSONUtiles.grabar(jVuelo);*/
     }
 
     public static List<Usuario> mapeoListaUsuarios() throws JSONException {

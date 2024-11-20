@@ -104,7 +104,7 @@ public class Pasajero extends Usuario {
             numeroPasaporte = sc.nextLine().trim();
 
             // Validamos que sean solo numeros,
-            // validamos que solo haya digitos del 0 a 9
+            // validamos que solo haya digitos
             if (numeroPasaporte.matches("\\d+")) {
                 this.numPasaporte=numeroPasaporte;
                 break; // Salir del bucle si es válido
