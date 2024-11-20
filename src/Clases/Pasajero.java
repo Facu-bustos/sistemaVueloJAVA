@@ -1,10 +1,12 @@
 package Clases;
 import Enumeradores.TipoEstadoCheckIn;
+import Excepciones.ErrorDeEliminacion;
 import GestionDeMenues.GestionPasajero;
 import GestionJSON.GestionJSON;
 import Menues.MenuPasajero;
 import org.json.JSONException;
 
+import javax.imageio.metadata.IIOMetadataNode;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -87,13 +89,14 @@ public class Pasajero extends Usuario {
     }
     @Override
     public String toString() {
-        return "Pasajero{" +
-                "numPasaporte='" + numPasaporte + '\'' +
-                ", estadoCheckIN=" + estadoCheckIN +
-                ", reservasPasajero=" + reservasPasajero +
-                "} " + super.toString();
+        return "========== Detalles del Pasajero ==========" + System.lineSeparator() +
+                "Número de Pasaporte: " + this.numPasaporte + System.lineSeparator() +
+                "Estado de Check-In: " + (TipoEstadoCheckIn.PENDIENTE) + System.lineSeparator() +
+                "Reservas: " + System.lineSeparator() +
+                "==========================================" + System.lineSeparator() +
+                super.toString();
     }
-    public void CheckIN(List<TicketsDeReserva>ticketsDeReservas) throws JSONException {
+    public void CheckIN(List<TicketsDeReserva>ticketsDeReservas) throws JSONException{
         Scanner sc = new Scanner(System.in);
         System.out.println("Ingrese Número de Pasaporte:");
         String numeroPasaporte;
@@ -155,6 +158,7 @@ public class Pasajero extends Usuario {
             if (this.numPasaporte.equals(numeroPasaporte)) {
                 if (this.estadoCheckIN == TipoEstadoCheckIn.PENDIENTE) {
                     this.estadoCheckIN = TipoEstadoCheckIn.REALIZADO;
+                    this.numPasaporte=numeroPasaporte;
                     System.out.println("Check-in realizado con éxito.");
                 } else {
                     System.out.println("El check-in ya fue realizado.");
@@ -165,11 +169,38 @@ public class Pasajero extends Usuario {
         } catch (InterruptedException e) {
             System.err.println("El retardo fue interrumpido.");
         }
+
+
+            System.out.println("==========ESTADO ACTUAL DEL PASAJERO==========");
+        for(int i=0; i<1; i++)
+        {
+            System.out.println("Numero De Pasaporte: " + this.numPasaporte);
+            System.out.println("Nombre: " + nombre);
+            System.out.println("Apellido: " + apellido);
+        }
+
+
+        try {
+            for(int i=0; i<3; i++)
+            {
+                Thread.sleep(1500);
+            }
+        }catch (Exception e)
+        {
+            throw new ErrorDeEliminacion("");
+        }
+
+
+
         if(numPasaporte!=null)
         {
             GestionJSON.createJSON(nombre,apellido,numeroPasaporte,ticketsDeReservas);
         }
+
     }
+
+
+
 }
 
 

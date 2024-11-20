@@ -1,6 +1,7 @@
 package GestionDeMenues;
 
 import Clases.*;
+import Excepciones.ErrorDeEliminacion;
 import Excepciones.VueloNoEncontradoExcepcion;
 import GestionJSON.GestionJSON;
 import Menues.MenuAgenteVentas;
@@ -116,6 +117,20 @@ public class GestionPasajero {
                 eliminar=TR;
             }
         }
+
+
+        System.out.println("Eliminando Reserva");
+        try {
+            for(int i=0; i<3; i++)
+            {
+                Thread.sleep(1000);
+                System.out.println("."+".");
+            }
+        }catch (Exception e)
+        {
+            throw new ErrorDeEliminacion("Error al eliminar un registro");
+        }
+
 
         if(eliminar!=null)
         {

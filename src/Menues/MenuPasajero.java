@@ -21,10 +21,8 @@ public class MenuPasajero {
         Scanner scanner = new Scanner(System.in);
         GestionPasajero GP = new GestionPasajero();
         List<Vuelo>listaVuelos=GestionJSON.mapeoVuelo();
-
         List<TicketsDeReserva> tikectsDeReserva = new ArrayList<>();
-
-
+        p.setReservasPasajero(tikectsDeReserva);
         int opcion;
         do {
             System.out.println("===== Menú Pasajero =====");
@@ -33,7 +31,8 @@ public class MenuPasajero {
             System.out.println("3. Ver mis reservas");
             System.out.println("4. Cancelar una reserva");
             System.out.println("5. Realizar CheckIN");
-            System.out.println("7. Volver al menú principal");
+            System.out.println("7. Ver mi estado");
+            System.out.println("8. Volver al menú principal");
             System.out.print("Seleccione una opción:");
             opcion = scanner.nextInt();
             scanner.nextLine();
@@ -58,12 +57,15 @@ public class MenuPasajero {
                     p.CheckIN(tikectsDeReserva);
                     break;
                 case 7:
+
+                    break;
+                case 8:
                     System.out.println("Volviendo al menú principal...");
                     break;
                 default:
                     System.out.println("Opción no válida. Intente nuevamente.");
             }
-        } while (opcion != 7);
+        } while (opcion != 8);
         scanner.close();
     }
 

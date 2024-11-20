@@ -130,7 +130,6 @@ public static void agregarVuelo(JSONObject nuevoVuelo) {
         }
     }
 
-
     public static JSONTokener leer(String archivo) {
         JSONTokener tokener = null;
 

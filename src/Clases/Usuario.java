@@ -48,11 +48,10 @@ public abstract class Usuario {
 
     @Override
     public String toString() {
-        return "Usuario{" +
-                "email='" + email + '\'' +
-                ", contrasenia='" + contrasenia + '\'' +
-                ", rol='" + rol + '\'' +
-                '}';
+        return "========== Detalles del Usuario ==========" + System.lineSeparator() +
+                "Email: " + email + System.lineSeparator() +
+                "Rol: " + rol + System.lineSeparator() +
+                "=========================================";
     }
 
 }
