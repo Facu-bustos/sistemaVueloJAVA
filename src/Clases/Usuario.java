@@ -1,14 +1,5 @@
 package Clases;
 
-import Excepciones.ContraseniaIncorrectaExcepcion;
-import GestionJSON.GestionJSON;
-import org.json.JSONException;
-
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Objects;
-
 public abstract class Usuario {
 
     // ATRIBUTOS

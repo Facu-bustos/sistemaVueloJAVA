@@ -2,8 +2,11 @@ package GestionDeMenues;
 import java.util.Random;
 
 import Clases.Escala;
+import Clases.Pasajero;
 import Clases.TicketsDeReserva;
 import Clases.Vuelo;
+import Enumeradores.TipoEstadoCheckIn;
+import Excepciones.VueloNoEncontradoExcepcion;
 import GestionJSON.GestionJSON;
 import org.json.JSONException;
 
@@ -44,27 +47,50 @@ public class GestionAgenteDeVentas {
                     ticketReserva.setIdVuelo(v.getIdVuelo());
                     ticketReserva.setOrigen(v.getOrigen());
                     ticketReserva.setDestino(v.getDestino());
-                    ticketReserva.setPrecio(v.getPrecio());
-                    ticketReserva.setNumeroVuelo(v.getNumeroVuelo());
-                    ticketReserva.setAerolinea(v.getAerolinea());
-                    ticketReserva.setDuracion(v.getDuracion());
+                    ticketReserva.setHoraSalida(v.getHoraSalida());
                     ticketReserva.setHoraLlegada(v.getHoraLlegada());
+                    ticketReserva.setDuracion(v.getDuracion());
+                    ticketReserva.setPrecio(v.getPrecio());
+                    ticketReserva.setCantidadDisponible(v.getCantidadDisponible());
+                    ticketReserva.setAerolinea(v.getAerolinea());
+                    ticketReserva.setClase(v.getClase());
+                    ticketReserva.setNumeroVuelo(v.getNumeroVuelo());
+                    List<Escala>escalas = new ArrayList<>();
+                    for(Escala es: v.getEscalas())
+                    {
+                        Escala escala = new Escala();
+                        escala.setAeropueto(es.getAeropueto());
+                        escala.setHoraSalida(es.getHoraSalida());
+                        escalas.add(escala);
+                    }
+                    ticketReserva.setEscalas(escalas);
+                    ticketReserva.setTipoVuelo(v.getTipoVuelo());
+                    ticketReserva.setEstadoVuelo(v.getEstadoVuelo());
                     listaDeReserva.add(ticketReserva);
                     break;
                 }
             }
-
             if (!vueloEncontrado) {
-                System.out.println("No se encontró ningún vuelo con el destino ingresado. Por favor, intente nuevamente.");
+               throw new VueloNoEncontradoExcepcion("Destino no disponible, le avisaremos cuando haya vuelos diponibles");
             }
-
             System.out.println("¿Desea adquirir otro destino? (si/no):");
             String respuesta = scanner.nextLine().trim();
             seguirComprando = respuesta.equalsIgnoreCase("si");
         }
-
+        System.out.println("Realizando compra");
+        try {
+            for(int i=0; i<3; i++)
+            {
+                Thread.sleep(1000);
+                System.out.println("."+".");
+            }
+        }catch (Exception e)
+        {
+            throw new RuntimeException("Error en la ejecucion");
+        }
         return listaDeReserva;
     }
+
 
     private String obtenerEntradaValida(Scanner scanner) {
         String entrada;
@@ -106,6 +132,86 @@ public class GestionAgenteDeVentas {
         for(TicketsDeReserva tr: reservas)
         {
             System.out.println(tr.toString());
+        }
+    }
+
+    public void CheckIN(List<TicketsDeReserva>ticketsDeReservas) throws JSONException {
+
+        Pasajero p = new Pasajero();
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Ingrese Número de Pasaporte:");
+        String numeroPasaporte;
+        while (true) {
+            numeroPasaporte = sc.nextLine().trim();
+
+            // Validamos que sean solo numeros,
+            // validamos que solo haya digitos del 0 a 9
+            if (numeroPasaporte.matches("\\d+")) {
+                p.setNumPasaporte(numeroPasaporte);
+                break; // Salir del bucle si es válido
+            } else {
+                System.out.println("Error: El número de pasaporte debe contener solo números. Intente nuevamente:");
+            }
+        }
+        String nombre = "";
+        String apellido = "";
+        boolean nombreValido = false;
+        while (!nombreValido) {
+            System.out.println("Ingrese NOMBRE:");
+            nombre = sc.nextLine();
+            nombreValido = true; // Asumimos que es válido
+
+            // Verificamos que todos los caracteres sean letras
+            for (int i = 0; i < nombre.length(); i++) {
+                char c = nombre.charAt(i);
+                if (!((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || c == ' ')) {
+                    nombreValido = false;
+                    System.out.println("El nombre solo puede contener letras. Intente de nuevo.");
+                    break;
+                }
+            }
+        }
+        boolean apellidoValido = false;
+        while (!apellidoValido) {
+            System.out.println("Ingrese APELLIDO:");
+            apellido = sc.nextLine();
+            apellidoValido = true;
+            for (int i = 0; i < apellido.length(); i++) {
+                char c = apellido.charAt(i);
+                if (!((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || c == ' ')) {
+                    apellidoValido = false;
+                    System.out.println("El apellido solo puede contener letras. Intente de nuevo.");
+                    break;
+                }
+            }
+        }
+        //ACA HACEMOS UNA DOBLE VALIDACION
+        //EL NUMERO DE PASAPORTE QUE ASIGNAMOS ES EL CORRECTO COMPARA
+        //Y CAMBIAMOS EL ESTADO DEL CHECK IN A REALIZADO.
+        System.out.println("Realizando checkIN");
+        try {
+            for(int i=0; i<3; i++)
+            {
+                Thread.sleep(1000);
+                System.out.println("."+".");
+            }
+            // Pausa de 1 segundo
+            if (p.getNumPasaporte().equalsIgnoreCase(numeroPasaporte)) {
+                if (p.getEstadoCheckIN() == TipoEstadoCheckIn.PENDIENTE) {
+                     p.setEstadoCheckIN(TipoEstadoCheckIn.REALIZADO);
+                    System.out.println("Check-in realizado con éxito.");
+                } else {
+                    System.out.println("El check-in ya fue realizado.");
+                }
+            } else {
+                System.out.println("Número de pasaporte incorrecto.");
+            }
+        } catch (InterruptedException e) {
+            System.err.println("El retardo fue interrumpido.");
+        }
+        if(p.getNumPasaporte()!=null)
+        {
+            GestionJSON.createJSON(nombre,apellido,numeroPasaporte,ticketsDeReservas);
         }
     }
 

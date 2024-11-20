@@ -14,9 +14,11 @@ public class MenuAgenteVentas {
 
     public void mostrarMenu() throws JSONException{
         Scanner scanner = new Scanner(System.in);
+        GestionAgenteDeVentas g = new GestionAgenteDeVentas();
         GestionAgenteDeVentas GestorAdV = new GestionAgenteDeVentas();
+
         List<Vuelo>listaVuelos=GestionJSON.mapeoVuelo();
-        List<TicketsDeReserva> ticketsDeReservas = new ArrayList<>();
+        List<TicketsDeReserva> ticketsDeReserva = new ArrayList<>();
 
         int opcion;
 
@@ -26,7 +28,8 @@ public class MenuAgenteVentas {
             System.out.println("2. Realizar una reserva para un pasajero");
             System.out.println("3. Cancelar una reserva para un pasajero");
             System.out.println("4. Ver reservas de pasajeros");
-            System.out.println("5. Volver al menú principal");
+            System.out.println("5. Asignar vuelo y checkIN");
+            System.out.println("6. Volver al menú principal");
             System.out.print("Seleccione una opción: ");
 
             opcion = scanner.nextInt();
@@ -38,21 +41,23 @@ public class MenuAgenteVentas {
                     break;
                 case 2:
                     List<TicketsDeReserva>reservas=GestorAdV.comprarVuelo(listaVuelos);
-                    ticketsDeReservas.addAll(reservas);
+                    ticketsDeReserva.addAll(reservas);
                     break;
                 case 3:
-                    GestorAdV.eliminarReserva(ticketsDeReservas);
+                    GestorAdV.eliminarReserva(ticketsDeReserva);
                     break;
                 case 4:
-                    GestorAdV.mostrarReservas(ticketsDeReservas);
+                    GestorAdV.mostrarReservas(ticketsDeReserva);
                     break;
                 case 5:
-
+                    g.CheckIN(ticketsDeReserva);
+                    break;
+                case 6:
                     break;
                 default:
                     System.out.println("Opción no válida. Intente nuevamente.");
             }
-        } while (opcion != 5);
+        } while (opcion != 6);
         scanner.close();
     }
 }
