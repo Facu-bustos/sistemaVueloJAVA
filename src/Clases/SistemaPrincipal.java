@@ -1,18 +1,14 @@
 package Clases;
 
-import GestionDeMenues.MenuAdministrador;
-import GestionDeMenues.MenuAgenteVentas;
-import GestionDeMenues.MenuPasajero;
-import GestionDeUsuario.GestionUsuario;
+import Menues.MenuAdministrador;
+import Menues.MenuAgenteVentas;
+import org.json.JSONException;
 
-import java.util.Scanner;
 import java.util.Scanner;
 
 public class SistemaPrincipal {
 
-    private static GestionUsuario gestionUsuario = new GestionUsuario();
-
-    public static void main(String[] args) {
+    public static void main(String[] args) throws JSONException {
 
         Scanner scanner = new Scanner(System.in);
         int opcion;
@@ -29,13 +25,13 @@ public class SistemaPrincipal {
 
             switch (opcion) {
                 case 1:
-                    MenuAdministrador.mostrarMenu(scanner);
+                    System.out.println("Ingresando como administrador...");
                     break;
                 case 2:
-                    MenuPasajero.mostrarMenu(scanner);
+                    System.out.println("Ingresando como pasajero...");
                     break;
                 case 3:
-                    MenuAgenteVentas.mostrarMenu(scanner);
+                    System.out.println("Ingresando como agente de venta...");
                     break;
                 case 4:
                     System.out.println("Saliendo del sistema. ¡Adiós!");
@@ -55,93 +51,18 @@ public class SistemaPrincipal {
         String password = scanner.nextLine();
 
         // Intentar autenticar al administrador
-        if (gestionUsuario.autenticarAdministrador(email, password)) {
+        /*if (gestionUsuario.autenticarAdministrador(email, password)) {
             System.out.println("Inicio de sesión exitoso. ¡Bienvenido al sistema!");
-            mostrarMenu(scanner); // Mostrar el menú de opciones
+            mostrarMenu(); // Mostrar el menú de opciones
         } else {
             System.out.println("Error: Email o contraseña incorrectos.");
         }
 
         scanner.close();
-    }
+    }*/
 
-    private static void mostrarMenu(Scanner scanner) {
-        int opcion;
 
-        do {
-            System.out.println("--- Menú de opciones ---");
-            System.out.println("1. Ver información del vuelo");
-            System.out.println("2. Crear nueva reserva");
-            System.out.println("3. Cancelar reserva");
-            System.out.println("4. Agregar administrador");
-            System.out.println("5. Agregar pasajero");
-            System.out.println("6. Agregar agente de ventas");
-            System.out.println("7. Modificar datos de usuario");
-            System.out.println("8. Listar administradores");
-            System.out.println("9. Listar pasajeros");
-            System.out.println("10. Listar agentes de ventas");
-            System.out.println("11. Salir");
-            System.out.print("Seleccione una opción: ");
-
-            opcion = scanner.nextInt();
-            scanner.nextLine(); // Limpiar el buffer de entrada
-
-            switch (opcion) {
-                case 1:
-                    verInformacionVuelo();
-                    break;
-                case 2:
-                    crearNuevaReserva();
-                    break;
-                case 3:
-                    cancelarReserva();
-                    break;
-                case 4:
-                    agregarAdministrador(scanner);
-                    break;
-                case 5:
-                    agregarPasajero(scanner);
-                    break;
-                case 6:
-                    agregarAgenteDeVentas(scanner);
-                    break;
-                case 7:
-                    modificarDatosUsuario(scanner);
-                    break;
-                case 8:
-                    listarAdministradores();
-                    break;
-                case 9:
-                    listarPasajeros();
-                    break;
-                case 10:
-                    listarAgentesDeVentas();
-                    break;
-                case 11:
-                    System.out.println("Saliendo del sistema. ¡Hasta luego!");
-                    break;
-                default:
-                    System.out.println("Opción no válida. Intente de nuevo.");
-            }
-        } while (opcion != 11);
-    }
-
-    private static void verInformacionVuelo() {
-        System.out.println("Mostrando información del vuelo...");
-        // Lógica para ver la información del vuelo
-    }
-
-    private static void crearNuevaReserva() {
-        System.out.println("Creando una nueva reserva...");
-        // Lógica para crear una nueva reserva
-    }
-
-    private static void cancelarReserva() {
-        System.out.println("Cancelando reserva...");
-        // Lógica para cancelar una reserva
-    }
-
-    private static void agregarAdministrador(Scanner scanner) {
+    /*private static void agregarAdministrador() {
         System.out.print("Ingrese el email del nuevo administrador: ");
         String email = scanner.nextLine();
 
@@ -149,11 +70,11 @@ public class SistemaPrincipal {
         String password = scanner.nextLine();
 
         Administrador nuevoAdmin = new Administrador(email, password);
-        gestionUsuario.agregarAdministrador(nuevoAdmin);
+        gestionUsuario.registrarUsuario(usuario,nuevoAdmin);
         System.out.println("Administrador agregado exitosamente.");
-    }
+    }*/
 
-    private static void agregarPasajero(Scanner scanner) {
+    /*private static void agregarPasajero() {
         System.out.print("Ingrese el email del pasajero: ");
         String email = scanner.nextLine();
 
@@ -169,9 +90,9 @@ public class SistemaPrincipal {
         Pasajero nuevoPasajero = new Pasajero(email, password, numPasaporte, tipoPasajero);
         gestionUsuario.agregarPasajero(nuevoPasajero);
         System.out.println("Pasajero agregado exitosamente.");
-    }
+    }*/
 
-    private static void agregarAgenteDeVentas(Scanner scanner) {
+    /*private static void agregarAgenteDeVentas(Scanner scanner) {
         System.out.print("Ingrese el email del agente de ventas: ");
         String email = scanner.nextLine();
 
@@ -181,9 +102,9 @@ public class SistemaPrincipal {
         AgenteVenta nuevoAgente = new AgenteVenta(email, password);
         gestionUsuario.agregarAgenteDeVentas(nuevoAgente);
         System.out.println("Agente de ventas agregado exitosamente.");
-    }
+    }*/
 
-    private static void modificarDatosUsuario(Scanner scanner) {
+    /*private static void modificarDatosUsuario(Scanner scanner) {
         System.out.print("Ingrese el email del usuario a modificar: ");
         String email = scanner.nextLine();
 
@@ -202,26 +123,26 @@ public class SistemaPrincipal {
         usuario.setPassword(nuevaPassword);
 
         System.out.println("Datos modificados exitosamente.");
-    }
+    }*/
 
-    private static void listarAdministradores() {
+    /*private static void listarAdministradores() {
         System.out.println("Lista de administradores:");
         for (Administrador admin : gestionUsuario.obtenerAdministradores()) {
             System.out.println("Email: " + admin.getEmail());
         }
-    }
+    }*/
 
-    private static void listarPasajeros() {
+    /*private static void listarPasajeros() {
         System.out.println("Lista de pasajeros:");
         for (Pasajero pasajero : gestionUsuario.obtenerPasajeros()) {
             System.out.println("Email: " + pasajero.getEmail() + ", Número de pasaporte: " + pasajero.getNumPasaporte());
         }
-    }
+    }*/
 
-    private static void listarAgentesDeVentas() {
+    /*private static void listarAgentesDeVentas() {
         System.out.println("Lista de agentes de ventas:");
         for (AgenteVenta agente : gestionUsuario.obtenerAgentesDeVentas()) {
             System.out.println("Email: " + agente.getEmail());
-        }
+        }*/
     }
 }

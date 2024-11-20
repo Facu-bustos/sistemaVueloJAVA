@@ -12,12 +12,12 @@ public class Aeropuerto {
     //ATRIBUTOS
 
     private String ubicacion;
-    List<Vuelo>listaVuelos;
+    List<Vuelo>vuelos;
 
 
     public Aeropuerto(String ubicacion, List<Vuelo> listaVuelos) throws JSONException {
         this.ubicacion = ubicacion;
-        this.listaVuelos = GestionJSON.mapeoVuelo();
+        this.vuelos = GestionJSON.mapeoVuelo();
     }
 
 
@@ -31,30 +31,30 @@ public class Aeropuerto {
     }
 
     public List<Vuelo> getListaVuelos() {
-        return listaVuelos;
+        return vuelos;
     }
 
     public void setListaVuelos(List<Vuelo> listaVuelos) {
-        this.listaVuelos = listaVuelos;
+        this.vuelos = listaVuelos;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Aeropuerto that)) return false;
-        return Objects.equals(ubicacion, that.ubicacion) && Objects.equals(listaVuelos, that.listaVuelos);
+        return Objects.equals(ubicacion, that.ubicacion) && Objects.equals(vuelos, that.vuelos);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ubicacion, listaVuelos);
+        return Objects.hash(ubicacion, vuelos);
     }
 
     @Override
     public String toString() {
         return "Aeropuerto{" +
                 "ubicacion='" + ubicacion + '\'' +
-                ", listaVuelos=" + listaVuelos +
+                ", listaVuelos=" + vuelos +
                 '}';
     }
 }
