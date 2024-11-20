@@ -59,7 +59,7 @@ public class MenuAdministrador {
                 case 6:
                     gestorAdmin.modificarUsuarios(listaUsuarios);
                 case 7:
-                    System.out.println("6. Volviendo al menu PRINCIPAL");
+                    System.out.println("==Volviendo al menu PRINCIPAL==");
                     break;
                 default:
                     System.out.println("Opción no válida. Intente nuevamente.");
