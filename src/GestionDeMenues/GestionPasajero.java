@@ -1,6 +1,7 @@
 package GestionDeMenues;
 
 import Clases.*;
+import Excepciones.VueloNoEncontradoExcepcion;
 import GestionJSON.GestionJSON;
 import Menues.MenuAgenteVentas;
 import Menues.MenuPasajero;
@@ -68,7 +69,7 @@ public class GestionPasajero {
                 }
             }
             if (!vueloEncontrado) {
-                System.out.println("No se encontró ningún vuelo con el destino ingresado. Por favor, intente nuevamente.");
+               throw new VueloNoEncontradoExcepcion("Vuelo no disponible por el momento. Le avisaremos cuando este disponible");
             }
             System.out.println("¿Desea adquirir otro destino? (si/no):");
             String respuesta = scanner.nextLine().trim();
