@@ -37,7 +37,8 @@ public class MenuAgenteVentas {
 
             switch (opcion) {
                 case 1:
-                    GestorAdV.lecturaDeArraylistaVuelos(listaVuelos);
+                    /*GestorAdV.lecturaDeArraylistaVuelos(listaVuelos);*/
+                    GestorAdV.lecturaVuelos(listaVuelos);
                     break;
                 case 2:
                     List<TicketsDeReserva>reservas=GestorAdV.comprarVuelo(listaVuelos);

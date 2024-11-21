@@ -31,9 +31,10 @@ public class MenuAdministrador {
             System.out.println("1. Ver lista de vuelos");
             System.out.println("2. Ver lista de usuarios");
             System.out.println("3. Eliminar un usuario");
-            System.out.println("4. Eliminar vuelos");
-            System.out.println("5.Actualizar lista de vuelos");
-            System.out.println("6. Volver al menú principal");
+            System.out.println("4. Eliminar vuelos Cancelados");
+            System.out.println("5. Alta de Usuarios");
+            System.out.println("6. Modificar de Usuarios");
+            System.out.println("7. Volver al menú principal");
             System.out.print("Seleccione una opción: ");
             opcion = scanner.nextInt();
             scanner.nextLine(); // Limpiar buffer
@@ -50,16 +51,19 @@ public class MenuAdministrador {
                 case 4:
                     List<Vuelo>reprogramacion= gestorAdmin.eliminarVuelosProgramados(listaVuelos);
                     reprogramados.addAll(reprogramacion);
-                    break;
-                case 5:
                     GestionJSON.createJSONVuelosReprogramados(reprogramados);
                     break;
+                case 5:
+                    gestorAdmin.darDeAltaUsuarios(listaUsuarios);
+                    break;
                 case 6:
-                    System.out.println("6. Volviendo al menu PRINCIPAL");
+                    gestorAdmin.modificarUsuarios(listaUsuarios);
+                case 7:
+                    System.out.println("==Volviendo al menu PRINCIPAL==");
                     break;
                 default:
                     System.out.println("Opción no válida. Intente nuevamente.");
             }
-        } while (opcion != 3);
+        } while (opcion != 7);
     }
 }

@@ -1,8 +1,10 @@
 package GestionDeMenues;
 
 import Clases.*;
+import Excepciones.ErrorDeEliminacion;
 import Excepciones.VueloNoEncontradoExcepcion;
 import GestionJSON.GestionJSON;
+import Interface.I_interface;
 import Menues.MenuAgenteVentas;
 import Menues.MenuPasajero;
 import org.json.JSONException;
@@ -14,15 +16,19 @@ import java.util.Scanner;
 
 import static GestionJSON.GestionJSON.createJSON;
 
-public class GestionPasajero {
-
-
-    public void lecturaDeArraylistaVuelos(List<Vuelo>listaVuelos) throws JSONException {
+public class GestionPasajero implements I_interface {
+    @Override
+    public void lecturaVuelos(List<Vuelo>listaVuelos) {
         for(Vuelo v: listaVuelos)
         {
             System.out.println(v);
         }
+
     }
+
+    /*public void lecturaDeArraylistaVuelos(List<Vuelo>listaVuelos) throws JSONException {
+
+    }*/
 
     public List<TicketsDeReserva>comprarVuelo(List<Vuelo>listaVuelos)
     {
@@ -117,6 +123,20 @@ public class GestionPasajero {
             }
         }
 
+
+        System.out.println("Eliminando Reserva");
+        try {
+            for(int i=0; i<3; i++)
+            {
+                Thread.sleep(1000);
+                System.out.println("."+".");
+            }
+        }catch (Exception e)
+        {
+            throw new ErrorDeEliminacion("Error al eliminar un registro");
+        }
+
+
         if(eliminar!=null)
         {
             Reservas.remove(eliminar);
@@ -131,4 +151,7 @@ public class GestionPasajero {
             System.out.println(tr.toString());
         }
     }
+
+
+
 }

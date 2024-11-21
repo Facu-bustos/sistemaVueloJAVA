@@ -178,21 +178,21 @@ public class Vuelo {
 
     @Override
     public String toString() {
-        return "Vuelo{" +
-                "idVuelo=" + idVuelo + System.lineSeparator()+
-                ", origen='" + origen + '\'' +
-                ", destino='" + destino + '\'' +
-                ", horaSalida='" + horaSalida + '\'' +
-                ", horaLlegada='" + horaLlegada + '\'' +
-                ", duracion='" + duracion + '\'' +
-                ", precio=" + precio +
-                ", cantidadDisponible=" + cantidadDisponible +
-                ", aerolinea='" + aerolinea + '\'' +
-                ", clase='" + clase + '\'' +
-                ", numeroVuelo='" + numeroVuelo + '\''  +
-                ", escalas=" + escalas +
-                ", tipoVuelo='" + tipoVuelo + '\'' +
-                ", estadoVuelo='" + estadoVuelo + '\''+  System.lineSeparator()+
-                '}';
+        return "========== Detalles del Vuelo ==========" + System.lineSeparator() +
+                "ID del Vuelo: " + idVuelo + System.lineSeparator() +
+                "Origen: " + origen + System.lineSeparator() +
+                "Destino: " + destino + System.lineSeparator() +
+                "Hora de Salida: " + horaSalida + System.lineSeparator() +
+                "Hora de Llegada: " + horaLlegada + System.lineSeparator() +
+                "Duración: " + duracion + System.lineSeparator() +
+                "Precio: $" + precio + System.lineSeparator() +
+                "Cantidad Disponible: " + cantidadDisponible + System.lineSeparator() +
+                "Aerolínea: " + aerolinea + System.lineSeparator() +
+                "Clase: " + clase + System.lineSeparator() +
+                "Número de Vuelo: " + numeroVuelo + System.lineSeparator() +
+                "Escalas: " + escalas + System.lineSeparator() +
+                "Tipo de Vuelo: " + tipoVuelo + System.lineSeparator() +
+                "Estado del Vuelo: " + estadoVuelo + System.lineSeparator() +
+                "========================================";
     }
 }
